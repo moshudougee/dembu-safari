@@ -1,0 +1,201 @@
+/* cyrillic-ext */
+@font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEH9CsKng.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  }
+  /* cyrillic */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEO9CsKng.woff2) format('woff2');
+    unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  }
+  /* greek-ext */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEG9CsKng.woff2) format('woff2');
+    unicode-range: U+1F00-1FFF;
+  }
+  /* greek */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEJ9CsKng.woff2) format('woff2');
+    unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+  }
+  /* vietnamese */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEF9CsKng.woff2) format('woff2');
+    unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+  }
+  /* latin-ext */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEE9CsKng.woff2) format('woff2');
+    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 600;
+    font-display: block;
+    src: url(https://design.penpot.app/internal/gfonts/font/sourcesans3/v15/nwpBtKy2OAdR1K-IwhWudF-R9QMylBJAV3Bo8Kxm7GEK9Cs.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  
+  
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    min-width: 100%;
+    padding: 0;
+  }
+  
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .text-node { background-clip: text !important; -webkit-background-clip: text !important; }
+  
+  /* Group */
+  .group-53b8e7d17393 {
+    position: absolute;
+    left: 1250px;
+    top: 9px;
+    width: 174px;
+    height: 60px;
+  }
+  
+  /* Group */
+  .group-53b8a470bc1f {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 60px;
+    height: 60px;
+  }
+  
+  /* prof1small */
+  .prof1small-53b705b4af08 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 60px;
+    height: 60px;
+    background: #FFFFFF;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  
+  /* prof1small */
+  .prof1small-53b705b4c42f {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 60px;
+    height: 60px;
+    background: url(data:image/jpeg;base64,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) no-repeat center center / cover;
+    border-radius: 0px;
+  }
+  
+  /* Ellipse */
+  .ellipse-531efa01d516 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  /* Group */
+  .group-53b8ca32a4f0 {
+    position: absolute;
+    left: 60px;
+    top: 11px;
+    width: 114px;
+    height: 40px;
+  }
+  
+  /* Username */
+  .username-531dfa58ad5e {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    width: 114px;
+    height: 20px;
+  }
+  .username-531dfa58ad5e .root-0 {
+    
+    
+    display: flex;
+    white-space: break-spaces;
+    align-items: flex-start;
+  }
+  .username-531dfa58ad5e .root-0-paragraph-set-0 {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: inherit;
+    min-width: 100%;
+    margin-right: 1px;
+    vertical-align: top;
+  }
+  .username-531dfa58ad5e .root-0-paragraph-set-0-paragraph-0 {
+    font-size: 0;
+    line-height: 1.2;
+    margin: 0;
+    text-align: center;
+  }
+  .username-531dfa58ad5e .root-0-paragraph-set-0-paragraph-0-text-0 {
+    color: rgba(9, 47, 8, 0.945);
+    text-transform: none;
+    
+    line-break: auto;
+    overflow-wrap: initial;
+    white-space: break-spaces;
+    text-rendering: geometricPrecision;
+    caret-color: rgba(9, 47, 8, 0.945);
+    text-decoration: none;
+    letter-spacing: 0px;
+    font-size: 18px;
+    font-family: "Source Sans 3";
+    font-style: normal;
+    font-weight: 600;
+  }
+  
+  /* Rectangle */
+  .rectangle-52dbe7cf0be1 {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 114px;
+    height: 40px;
+    border-radius: 5px;
+  }

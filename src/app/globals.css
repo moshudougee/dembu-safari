@@ -1,33 +1,286 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@font-face {
+  font-family: 'Lucian';
+  src: url('/fonts/LucianSchoenschriftCAT.ttf') format('truetype');
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 3px;
+    border-radius: 2px;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(165, 118, 56, 0.57);
   }
-}
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #185717;
+    border-radius: 50px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #185717;
+  }
+  
+  
+
+  @layer base {
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 222.2 84% 4.9%;
+
+      --card: 0 0% 100%;
+      --card-foreground: 222.2 84% 4.9%;
+
+      --popover: 0 0% 100%;
+      --popover-foreground: 222.2 84% 4.9%;
+
+      --primary: 222.2 47.4% 11.2%;
+      --primary-foreground: 210 40% 98%;
+
+      --secondary: 210 40% 96.1%;
+      --secondary-foreground: 222.2 47.4% 11.2%;
+
+      --muted: 210 40% 96.1%;
+      --muted-foreground: 215.4 16.3% 46.9%;
+
+      --accent: 210 40% 96.1%;
+      --accent-foreground: 222.2 47.4% 11.2%;
+
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 210 40% 98%;
+
+      --border: 214.3 31.8% 91.4%;
+      --input: 214.3 31.8% 91.4%;
+      --ring: 222.2 84% 4.9%;
+
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 222.2 84% 4.9%;
+      --foreground: 210 40% 98%;
+
+      --card: 222.2 84% 4.9%;
+      --card-foreground: 210 40% 98%;
+
+      --popover: 222.2 84% 4.9%;
+      --popover-foreground: 210 40% 98%;
+
+      --primary: 210 40% 98%;
+      --primary-foreground: 222.2 47.4% 11.2%;
+
+      --secondary: 217.2 32.6% 17.5%;
+      --secondary-foreground: 210 40% 98%;
+
+      --muted: 217.2 32.6% 17.5%;
+      --muted-foreground: 215 20.2% 65.1%;
+
+      --accent: 217.2 32.6% 17.5%;
+      --accent-foreground: 210 40% 98%;
+
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 210 40% 98%;
+
+      --border: 217.2 32.6% 17.5%;
+      --input: 217.2 32.6% 17.5%;
+      --ring: 212.7 26.8% 83.9%;
+    }
+  }
+
+  @layer base {
+    * {
+      @apply border-border;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      @apply bg-background text-foreground;
+    }
+  }
+  
+  @layer utilities {
+    .gradiant-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+      overflow: hidden;
+      animation: typing-text steps(40) 3s infinite, blink ease 0.3s infinite;
+      text-wrap: nowrap;
+      display: block;
+      width: max-content;
+      height: 80px;
+      width: 0;
+    }
+    @keyframes typing-text {
+      from {
+          width: 0%;
+      } 
+      to {
+          width: 900px;
+      }
+    }
+    .nav {
+      @apply fixed rounded bg-success-2 opacity-90 z-20 w-full h-20 top-0 start-0
+    }
+    .nav-items {
+      @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto
+    }
+    .nav-logo {
+      @apply w-4/6 md:w-auto flex items-center space-x-3 rtl:space-x-reverse my-[10px]
+    }
+    .nav-logo-image {
+      @apply h-[60px] w-[60px] object-contain rounded-lg
+    }
+    .nav-logo-text {
+      @apply self-center lg:text-2xl font-semibold whitespace-nowrap text-safari-1 font-lobster
+    }
+    .nav-mobile {
+      @apply flex flex-col w-2/6 md:hidden
+    }
+    .nav-mobile-search {
+      @apply md:hidden text-amber-50 rounded-sm focus:outline-none focus:ring-2 focus:ring-safari-1  text-sm p-2.5 me-1
+    }
+    .nav-mobile-menu-icon {
+      @apply inline-flex items-center p-2 w-10 h-10 justify-center text-sm md:hidden focus:outline-none focus:ring-2  text-safari-2 focus:ring-safari-1 rounded-sm
+    }
+    .nav-loading {
+      @apply flex gap-1 text-safari-1 justify-center items-center ms-2
+    }
+    .navbar {
+      @apply items-center justify-between hidden w-full md:flex md:w-auto
+    }
+    .navbar-list {
+      @apply flex flex-row my-[20px] rounded-lg xl:space-x-8 rtl:space-x-reverse
+    }
+    .navbar-menu {
+      @apply flex flex-row gap-1 p-2 text-safari-1 bg-transparent rounded-lg hover:bg-safari-1 hover:text-success-1
+    }
+    .navbar-menu-active {
+      @apply flex flex-row gap-1 p-2 rounded-lg bg-safari-1 text-success-1
+    }
+    .navbar-menu-icon {
+      @apply hidden lg:flex
+    }
+    .navbar-menu-text {
+      @apply font-semibold xl:text-[16px]
+    }
+    .navbar-search {
+      @apply relative hidden md:flex ms-2
+    }
+    .navbar-search-icon {
+      @apply absolute hidden inset-y-0 start-0 lg:flex items-center ps-3 pointer-events-none
+    }
+    .navbar-search-input {
+      @apply flex max-w-[100px] lg:block lg:max-w-[200px] xl:max-w-full p-3 lg:ps-10 text-sm rounded-lg bg-white placeholder-gray-600 text-safari-2 focus:ring-safari-1 focus:ring-opacity-50
+    }
+    .menubar {
+      @apply bg-success-2 border-0 rounded-lg text-safari-2 hover:text-success-1 focus:bg-safari-1 focus:text-success-1
+    }
+    .menubar-text {
+      @apply font-semibold text-[14px]
+    }
+    .menubar-item {
+      @apply gap-1 flex justify-center items-center hover:text-success-1
+    }
+    .mobile-search-icon {
+      @apply absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none
+    }
+    .mobile-search-input {
+      @apply block w-full p-2 ps-10 text-sm rounded bg-white border border-safari-1 placeholder-gray-600 text-success-1 
+    }
+    .mobile-menu-list {
+      @apply flex flex-col p-3 mt-4 font-medium rounded rtl:space-x-reverse bg-white border-safari-1
+    }
+    .mobile-menu-list-item {
+      @apply flex gap-1 m-1 py-3 px-3 text-success-1 bg-transparent rounded border-safari-2
+    }
+    .mobile-menu-list-active {
+      @apply flex gap-1 m-1 py-3 px-3 text-safari-2 bg-transparent rounded border-safari-2
+    }
+    .mobile-menu-text {
+      @apply font-semibold text-[14px]
+    }
+    .mobile-menubar {
+      @apply border-0 rounded-lg text-safari-2 focus:text-safari-1
+    }
+    .sidebar {
+      @apply fixed flex border-safari-2 rounded w-[210px] left-0 h-screen
+    }
+    .sidebar-header {
+      @apply flex w-[210px] h-10 bg-safari-4 p-1
+    }
+    .sidebar-header-menu {
+      @apply flex gap-1 pl-2 justify-start items-start text-success-1
+    }
+    .sidebar-menu {
+      @apply flex gap-1 py-2 justify-start items-start text-success-1 hover:text-safari-2 rounded cursor-pointer
+    }
+    .sidebar-menu-text {
+      @apply font-normal text-[18px]
+    }
+    .sidebar-menubar {
+      @apply ps-0 hover:bg-banner border-0
+    }
+    .hr {
+      @apply flex w-auto mx-10 border rounded-md
+    }
+    .breadcrumb {
+      @apply flex w-full m-2 ps-4
+    }
+    .pagination {
+      @apply flex justify-center items-center h-auto w-full my-3
+    }
+    .pagination-item {
+      @apply flex justify-center items-center px-2 mx-1 h-8 min-w-8 rounded bg-banner font-normal text-safari-1 cursor-pointer
+    }
+    .input-class {
+      @apply text-16 placeholder:text-16 rounded-lg border focus-visible:ring-offset-1 focus-visible:ring-safari-1 text-gray-900 placeholder:text-gray-500;
+    }
+    .text-12 {
+      @apply text-[12px] leading-[16px];
+    }
+    .text-14 {
+      @apply text-[14px] leading-[20px];
+    }
+  
+    .text-16 {
+      @apply text-[16px] leading-[24px];
+    }
+     /* Auth Form */
+  .auth-form {
+    @apply flex min-h-[500px] w-full max-w-[420px] flex-col justify-center gap-5 md:gap-8;
+  }
+
+  .form-item {
+    @apply flex flex-col gap-1.5;
+  }
+
+  .form-label {
+    @apply text-14 w-full max-w-[280px] font-medium text-gray-700;
+  }
+
+  .form-message {
+    @apply text-12 text-red-500;
+  }
+
+  .form-btn {
+    @apply text-16 rounded-lg bg-safari-2 font-semibold text-success-1 hover:text-safari-1 shadow-md;
+  }
+
+  .form-link {
+    @apply text-14 cursor-pointer font-medium text-success-1;
+  }
+  .group:hover .hover-text {
+    @apply opacity-100 visible;
+  }
+  .hover-text {
+    @apply absolute flex items-center justify-center text-lg font-semibold opacity-0 invisible;
+    @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md right-4;
+  }
+
+  }
