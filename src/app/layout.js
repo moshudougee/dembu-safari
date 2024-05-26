@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import Adbar from "@/components/Adbar";
 import GlobalProvider from "@/context/GlobalProvider";
+import { Toaster } from "react-hot-toast";
 
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning={true} className="scroll-smooth">
       <body className={`${inter.variable} ${pinyon.variable} ${lobster.variable}`}>
         <GlobalProvider>
+          <Toaster />
           <Navbar />
           <div className="flex mt-20 mx-8">
             <div className="sidebar">

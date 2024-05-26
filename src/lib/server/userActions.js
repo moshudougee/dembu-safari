@@ -1,6 +1,6 @@
 'use server'
 
-import { ID, Query } from "node-appwrite";
+import { ID, InputFile, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "./appwrite"
 import { parseStringify } from "../utils";
 import { cookies } from "next/headers";
@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 const {
     APPWRITE_DATABASE_ID: DATABASE_ID,
     APPWRITE_USER_INFO_ID: USER_INFO_ID,
+    APPWRITE_BUCKET_ID: BUCKET_ID
 } = process.env
 
 export const checkSession = () => {
@@ -87,7 +88,7 @@ export const register = async ({ password, ...userData }) => {
             name
         )
         if (!newUserAccount) throw new Error('Error creating user')
-        const avatarUrl = '/images/prof1small.jpg'
+        const avatarUrl = '/images/profile.jpeg'
         const newUser = await database.createDocument(
             DATABASE_ID,
             USER_INFO_ID,
@@ -144,5 +145,21 @@ export const logout = async () => {
     } catch (error) {
         console.log('Error', error)
         return null
+    }
+}
+
+export const checkImage = async (fileId) => {
+    try {
+        const { storage } = await createAdminClient()
+        const response = await storage.getFile(
+            BUCKET_ID,
+            fileId
+        )
+        if (!response) throw new Error('Error uploading image')
+        //console.log(response)
+        return true
+    } catch (error) {
+        console.log(error)
+        return false
     }
 }

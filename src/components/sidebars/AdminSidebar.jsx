@@ -56,14 +56,14 @@ const AdminSidebar = () => {
                       </MenubarTrigger>
                       <MenubarContent className="text-safari-2">
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/counties' className='menubar-item'>
                                 <Layers3 />
                                 <span className="menubar-text">Counties</span>
                             </Link>
                         </MenubarItem>
                         <MenubarSeparator />
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/counties/add' className='menubar-item'>
                                 <CopyPlus />
                                 <span className="menubar-text">Add</span>
                             </Link>
@@ -86,14 +86,14 @@ const AdminSidebar = () => {
                       </MenubarTrigger>
                       <MenubarContent className="text-safari-2">
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/categories' className='menubar-item'>
                                 <Layers3 />
                                 <span className="menubar-text">Categories</span>
                             </Link>
                         </MenubarItem>
                         <MenubarSeparator />
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/categories/add' className='menubar-item'>
                                 <CopyPlus />
                                 <span className="menubar-text">Add</span>
                             </Link>

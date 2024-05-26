@@ -1,24 +1,30 @@
 'use client'
 import ContentHeader from '@/components/ContentHeader'
+import CountyCard from '@/components/CountyCard'
+import CustomLoading from '@/components/CustomLoading'
 import { useGlobalContext } from '@/context/GlobalProvider'
-import { UserCog } from 'lucide-react'
+import useCounty from '@/hooks/useCounty'
+import { Telescope } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import CustomLoading from '@/components/CustomLoading'
-import useUsers from '@/hooks/useUsers'
-import UsersTable from '@/components/admin/UsersTable'
-  
 
-const AdminUsers = () => {
+const SingleCounty = ({ params }) => {
+    const { id } = params
     const { user, loggedIn, loading } = useGlobalContext()
-    const { data, error, isLoading } = useUsers()
+    const { data, error, isLoading } = useCounty(id)
     const router = useRouter()
     const crumbLinks = [
-        {
-            name: 'Dashboard',
-            href: '/admin'
-        }
+        {name: 'Dashboard', href: '/admin'}, {name: 'Counties', href: '/admin/counties'}
     ]
+    let code = ''
+    if (data?.code <= 9) {
+        code = '00'+data?.code
+    } else {
+        code = '0'+data?.code
+    }
+    const countyName = `${data?.name} ${code}` || 'County Name'
+    const imageurl = data?.flag || '' 
+
     if (loading) {
         return <CustomLoading />
     }
@@ -29,32 +35,30 @@ const AdminUsers = () => {
         return (
             <div className='min-h-screen'>
                 <ContentHeader 
-                    crumbPage='Users'
+                    crumbPage={countyName}
                     crumbLinks={crumbLinks}
-                    icon={<UserCog />}
-                    title='All Users'
-                    subtitle='View users'
+                    imageurl={imageurl}
+                    icon={<Telescope />}
+                    title={countyName}
+                    subtitle='View county details'
                 />
-                <div className='flex flex-col justify-center items-center w-full max-w-[1000px] px-6 mx-10 my-10'>
+                <div className='card-container'>
                     {isLoading ? (
                         <CustomLoading />
                     ) : error ? (
                         <div className='text-safari-2'>{error}</div>
-                    ) : data.length === 0 ? (
-                        <div className='text-safari-2'>No users found</div>
                     ) : (
-                        <UsersTable 
+                        <CountyCard 
                             data={data}
+                            role={user?.role}
                         />
                     )}
-                
                 </div>
             </div>
         )
     } else {
         return router.push('/')
-    }
-    
+    } 
 }
 
-export default AdminUsers
+export default SingleCounty

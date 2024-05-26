@@ -8,6 +8,7 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
   } from "@/components/ui/breadcrumb"
+import Link from 'next/link'
 
 const Breadlinks = ({ crumbLinks=[], crumbPage }) => {
     //console.log('crumbLinks are :'+ crumbLinks)
@@ -15,7 +16,9 @@ const Breadlinks = ({ crumbLinks=[], crumbPage }) => {
     <Breadcrumb>
         <BreadcrumbList>
             <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink asChild>
+                <Link href='/'>Home</Link>
+            </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             {crumbLinks && crumbLinks.length > 0 ? (
@@ -23,7 +26,9 @@ const Breadlinks = ({ crumbLinks=[], crumbPage }) => {
                 return (
                     <div key={link.name} className='flex gap-2 justify-center items-center'>
                         <BreadcrumbItem>
-                            <BreadcrumbLink href={link.href}>{link.name}</BreadcrumbLink>
+                            <BreadcrumbLink asChild>
+                                <Link href={link.href}>{link.name}</Link>
+                            </BreadcrumbLink>
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                     </div>

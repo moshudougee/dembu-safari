@@ -1,24 +1,23 @@
 'use client'
 import ContentHeader from '@/components/ContentHeader'
-import { useGlobalContext } from '@/context/GlobalProvider'
-import { UserCog } from 'lucide-react'
-import { useRouter } from 'next/navigation'
-import React from 'react'
 import CustomLoading from '@/components/CustomLoading'
-import useUsers from '@/hooks/useUsers'
-import UsersTable from '@/components/admin/UsersTable'
-  
+import { useGlobalContext } from '@/context/GlobalProvider'
+import { useRouter } from 'next/navigation'
+import { Telescope } from 'lucide-react'
+import React from 'react'
+import useCategory from '@/hooks/useCategory'
+import CategoryCard from '@/components/CategoryCard'
 
-const AdminUsers = () => {
+const SingleCategory = ({ params }) => {
+    const { id } = params
     const { user, loggedIn, loading } = useGlobalContext()
-    const { data, error, isLoading } = useUsers()
+    const { data, error, isLoading } = useCategory(id)
     const router = useRouter()
     const crumbLinks = [
-        {
-            name: 'Dashboard',
-            href: '/admin'
-        }
+        {name: 'Dashboard', href: '/admin'}, {name: 'Categories', href: '/admin/categories'}
     ]
+    const categoryName = data?.name || 'Category Name'
+
     if (loading) {
         return <CustomLoading />
     }
@@ -29,32 +28,29 @@ const AdminUsers = () => {
         return (
             <div className='min-h-screen'>
                 <ContentHeader 
-                    crumbPage='Users'
+                    crumbPage={categoryName}
                     crumbLinks={crumbLinks}
-                    icon={<UserCog />}
-                    title='All Users'
-                    subtitle='View users'
+                    icon={<Telescope />}
+                    title={categoryName}
+                    subtitle='View category details'
                 />
-                <div className='flex flex-col justify-center items-center w-full max-w-[1000px] px-6 mx-10 my-10'>
+                <div className='card-container'>
                     {isLoading ? (
                         <CustomLoading />
                     ) : error ? (
                         <div className='text-safari-2'>{error}</div>
-                    ) : data.length === 0 ? (
-                        <div className='text-safari-2'>No users found</div>
                     ) : (
-                        <UsersTable 
+                        <CategoryCard 
                             data={data}
+                            role={user?.role}
                         />
                     )}
-                
                 </div>
             </div>
         )
     } else {
         return router.push('/')
-    }
-    
+    }      
 }
 
-export default AdminUsers
+export default SingleCategory

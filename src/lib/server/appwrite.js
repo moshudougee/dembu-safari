@@ -1,6 +1,6 @@
 // src/lib/server/appwrite.js
 "use server";
-import { Client, Account, Databases, Users, Avatars } from "node-appwrite";
+import { Client, Account, Databases, Users, Avatars, Storage } from "node-appwrite";
 import { cookies } from "next/headers";
 
 export async function createSessionClient() {
@@ -40,6 +40,9 @@ export async function createAdminClient() {
     },
     get avatars() {
         return new Avatars(client);
-    }
+    },
+    get storage() {
+        return new Storage(client);
+    },
   };
 }

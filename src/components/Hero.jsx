@@ -7,7 +7,7 @@ import { ArrowBigLeftDash, ArrowBigRightDash } from 'lucide-react';
 
 
 
-const Hero = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 }) => {
+const Hero = ({ children: slides, autoSlide = false, autoSlideInterval = 10000 }) => {
   const [curr, setCurr] = useState(0)
   const prev = () => setCurr((curr) => (curr === 0 ? slides.length - 1 : curr - 1))
   const next = () => setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1))
@@ -21,7 +21,7 @@ const Hero = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 })
       <div className='flex transition-transform ease-out duration-1000 delay-1000' style={{ transform: `translateX(-${curr * 100}%)` }}>
         {slides}
       </div>
-      <div className="absolute inset-0 flex items-center justify-between p-4">
+      <div className="absolute -z-10 inset-0 flex items-center justify-between p-4">
         <button onClick={prev} className='p-1 rounded-full shadow bg-banner text-safari-3 hover:bg-safari-3 hover:text-banner'>
             <ArrowBigLeftDash />
         </button>
@@ -34,7 +34,8 @@ const Hero = ({ children: slides, autoSlide = false, autoSlideInterval = 3000 })
           {slides.map((slide, i) => { 
             return (
               <div key={i} className={`transition-all w-1.5 h-1.5 bg-safari-2 rounded-full  ${curr === i ? "p-0.5" : "bg-opacity-50"}`} />
-          )})}
+            )
+          })}
         </div>
       </div>
     </div>

@@ -66,6 +66,12 @@ const PopularDestination = ({ params }) => {
             >
               Tours & Safari
             </TabsTrigger>
+            <TabsTrigger 
+              value="feedback"
+              className="hover:text-safari-2 hover:bg-banner data-[state=active]:bg-banner data-[state=active]:text-safari-2"
+            >
+              Feedback
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="details">
             <p className='indent-12'>Maasai Mara, also sometimes spelled Masai Mara and locally known simply as The Mara, 
@@ -103,6 +109,14 @@ const PopularDestination = ({ params }) => {
             <div className='flex flex-col justify-center items-center'>
               <p className='indent-12'>
               If you offer various tours & safari services near <em>Maasai Mara National Reserve</em> kindly advertise with us here.
+              </p>
+            </div>
+            
+          </TabsContent>
+          <TabsContent value="feedback">
+            <div className='flex flex-col justify-center items-center'>
+              <p className='indent-12'>
+              Leave a feedback about your experience visiting <em>Maasai Mara National Reserve</em>.
               </p>
             </div>
             

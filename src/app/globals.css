@@ -208,6 +208,18 @@
     .mobile-menubar {
       @apply border-0 rounded-lg text-safari-2 focus:text-safari-1
     }
+    .hero-image {
+      @apply relative flex justify-center items-center border-safari-2  rounded w-[1150px] h-[646px] m-1 mt-1
+    }
+    .hero-content {
+      @apply flex flex-col absolute rounded w-[1000px] h-[400px] bg-safari-6 ml-[80px] mt-20
+    }
+    .hero-content-title {
+      @apply flex justify-center items-center mt-5 text-safari-2
+    }
+    .hero-content-explore {
+      @apply bg-safari-2 text-banner hover:bg-banner hover:text-safari-2 rounded p-1 gap-2 flex relative  z-10
+    }
     .sidebar {
       @apply fixed flex border-safari-2 rounded w-[210px] left-0 h-screen
     }
@@ -224,7 +236,7 @@
       @apply font-normal text-[18px]
     }
     .sidebar-menubar {
-      @apply ps-0 hover:bg-banner border-0
+      @apply ps-0 hover:bg-banner border-0 shadow
     }
     .hr {
       @apply flex w-auto mx-10 border rounded-md
@@ -233,10 +245,13 @@
       @apply flex w-full m-2 ps-4
     }
     .pagination {
-      @apply flex justify-center items-center h-auto w-full my-3
+      @apply flex flex-col justify-center items-center w-full
     }
     .pagination-item {
-      @apply flex justify-center items-center px-2 mx-1 h-8 min-w-8 rounded bg-banner font-normal text-safari-1 cursor-pointer
+      @apply flex gap-4 justify-center items-center w-full max-w-[500px] my-5 mx-5 px-5
+    }
+    .pagination-button {
+      @apply flex gap-2 shadow-md text-success-1 hover:text-safari-2 w-[110px] bg-transparent p-2
     }
     .input-class {
       @apply text-16 placeholder:text-16 rounded-lg border focus-visible:ring-offset-1 focus-visible:ring-safari-1 text-gray-900 placeholder:text-gray-500;
@@ -254,6 +269,9 @@
      /* Auth Form */
   .auth-form {
     @apply flex min-h-[500px] w-full max-w-[420px] flex-col justify-center gap-5 md:gap-8;
+  }
+  .wide-form {
+    @apply flex min-h-[500px] w-full max-w-[600px] flex-col justify-center gap-5 md:gap-8;
   }
 
   .form-item {
@@ -282,5 +300,27 @@
     @apply absolute flex items-center justify-center text-lg font-semibold opacity-0 invisible;
     @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md right-4;
   }
-
+  .category-card {
+    @apply flex flex-col justify-center items-center w-full
   }
+  .category-card-main {
+    @apply flex flex-col xl:flex-row gap-2 shadow-md rounded-md w-full xl:w-[1000px] xl:h-[420px] m-2 p-2
+  }
+  .category-card-image {
+    @apply flex relative rounded-md border w-[200px] h-[112px] md:w-[400px] md:h-[225px] xl:min-w-[700px] xl:h-[393px]
+  }
+  .category-card-side {
+    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-4 py-4
+  }
+  .county-card-side {
+    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2
+  }
+  .upload-image {
+    @apply flex flex-col items-center justify-center gap-1 rounded-sm bg-transparent shadow-lg border;
+    @apply w-20 h-20 cursor-pointer text-center text-sm text-success-1 hover:text-safari-2; 
+  }
+  .card-container {
+    @apply flex flex-col justify-center items-center w-full max-w-[1000px] px-6 mx-10 my-10
+  }
+}
+

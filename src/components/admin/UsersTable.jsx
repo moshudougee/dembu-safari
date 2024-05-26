@@ -10,7 +10,7 @@ import {
   } from "@/components/ui/table"
 import { FilePenLine, Trash2 } from 'lucide-react'
 import Image from 'next/image'
-import prof from '@/images/prof1small.jpg'
+
 
 const UsersTable = ({ data }) => {
   return (
