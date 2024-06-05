@@ -28,12 +28,12 @@ const SiteMap = async () => {
     const routes = ["", "/popular", "/about", "/contact", "/accommodation", "/tours"].map((route) => {
         return {
             url: `${SITE_URL}${route}`,
-            lastModified: new Date().toISOString,
+            lastModified: new Date().toISOString(),
             changefreq: 'daily',
             priority: 1,
         }
     })
-    const data = [...routes, ...categories, ...counties] 
+    return [...routes, ...categories, ...counties] 
 }
 
 export default SiteMap;
