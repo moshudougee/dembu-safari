@@ -23,7 +23,7 @@ const pinyon = Pinyon_Script({
 
 export const metadata = {
   title: "Dembu Safari",
-  description: "Created by Denis Mbuthia",
+  description: "The Home of Kenyan tourist attractions and destinations in all 47 counties",
 };
  
 export default function RootLayout({ children }) {
