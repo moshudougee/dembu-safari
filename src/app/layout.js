@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'
 import { Inter, Lobster, Pinyon_Script } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
