@@ -18,7 +18,8 @@ const CustomInput = ({ control, name, label, placeholder, id }) => {
                 placeholder={placeholder}
                 className="input-class"
                 type={
-                  name === 'password' ? 'password' : 
+                  name === 'password' ? 'password' :
+                  name === 'passwordConfirm'? 'password' : 
                   name === 'image' ? 'file' : 
                   name === 'code' ? 'number' : 
                   name === 'area' ? 'number' :

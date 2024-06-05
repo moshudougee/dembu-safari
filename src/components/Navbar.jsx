@@ -1,7 +1,7 @@
 'use client';
 import React, {useEffect, useState} from 'react';
 import Image from "next/image";
-import Logo from '../images/image15.jpg';
+import Logo from '../images/logo1.png';
 import { Loader2, LogIn, LogOut, Settings, UserCog, UserPlus } from 'lucide-react';
 import { Input } from './ui/input';
 import {
@@ -28,7 +28,7 @@ const Navbar = () => {
     const router = useRouter()
 
     useEffect(() => {
-      if (pathname !== '/login' && pathname !== '/register'){
+      if (pathname !== '/login' && pathname !== '/register' && pathname !== '/forgot' && pathname !== '/forgot/reset'){
         updatePath(pathname)
       }
     }, [pathname])
@@ -113,8 +113,8 @@ const Navbar = () => {
                 )
                 : loggedIn && user ? (
                   <div className='flex gap-1 text-safari-2 justify-start items-center bg-white mx-2'>
-                    <div className='h-[60px] w-[60px] rounded-full'>
-                      <Image src={user?.avatar} width={60} height={60} alt='Profile' className='rounded-full' />
+                    <div className='relative h-[60px] w-[60px] rounded-full'>
+                      <Image src={user?.avatar} fill sizes='100' alt='Profile' className='rounded-full object-cover' />
                     </div>
                     <div>
                     <Menubar className="mobile-menubar">
@@ -146,10 +146,10 @@ const Navbar = () => {
                         </>
                       }
                         <MenubarItem>
-                          <div className='menubar-item'>
+                          <Link href='/profile' className='menubar-item'>
                             <UserCog />
                             <span className="menubar-text">Profile</span>
-                          </div>
+                          </Link>
                         </MenubarItem>
                         <MenubarSeparator />
                         <MenubarItem>
@@ -223,8 +223,8 @@ const Navbar = () => {
             )
             : loggedIn && user ? (
               <div className='flex flex-row ms-2'>
-                <div className='rounded-full w-[60px] h-[60px] border-2 border-safari-2'>
-                  <Image src={user?.avatar} width={60} height={60} alt='Profile' className='rounded-full' />
+                <div className='relative rounded-full w-[60px] h-[60px] border-2 border-safari-2'>
+                  <Image src={user?.avatar} fill sizes='100' alt='Profile' className='rounded-full object-cover' />
                 </div>
                 <div className='flex items-center ms-2'>
                   {/**<span className=' text-safari-2 text-xl font-semibold'>Denis</span>*/}
@@ -257,10 +257,10 @@ const Navbar = () => {
                         </>
                         }
                         <MenubarItem>
-                          <div className='menubar-item'>
+                          <Link href='/profile' className='menubar-item'>
                             <UserCog />
                             <span className="menubar-text">Profile</span>
-                          </div>
+                          </Link>
                         </MenubarItem>
                         <MenubarSeparator />
                         <MenubarItem>

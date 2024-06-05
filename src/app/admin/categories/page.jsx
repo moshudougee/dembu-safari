@@ -32,7 +32,7 @@ const Categories = () => {
                 title='Destination Categories'
                 subtitle='View Categories List'
             />
-            <div className='flex flex-col justify-center items-center w-full max-w-[1000px] px-6 mx-10 my-10'>
+            <div className='card-container'>
                 {isLoading ? (
                     <CustomLoading />
                 ) : error ? (

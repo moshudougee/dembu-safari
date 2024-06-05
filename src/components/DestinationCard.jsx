@@ -24,8 +24,8 @@ const DestinationCard = ({ title, description, image, location }) => {
               <CardDescription>{formatedDesc} </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="h-[320px] w-[350px] rounded border border-safari-1">
-                <Image src={image} alt="Popular" className="rounded" />
+              <div className="relative h-[320px] w-[350px] rounded border border-safari-1">
+                <Image src={image} fill sizes='100' alt="Popular" className="rounded object-cover" />
               </div>
             </CardContent>
             <CardFooter>

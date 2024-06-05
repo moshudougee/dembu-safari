@@ -2,20 +2,35 @@
 import ContentHeader from '@/components/ContentHeader'
 import CustomLoading from '@/components/CustomLoading'
 import { useGlobalContext } from '@/context/GlobalProvider'
+import { getCountyDestinations } from '@/lib/server/destinationActions'
 import { checkImage } from '@/lib/server/userActions'
 import axios from 'axios'
 import { Loader, Settings } from 'lucide-react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import BackImg from '../../images/kenya-removebg-preview.png'
+import FrontImg from '../../images/image13.jpg'
 
 const AdminHome = () => {
   const { user, loggedIn, loading } = useGlobalContext()
   const [imageUrl, setImageUrl] = useState(null)
   const [imageUploading, setImageUploading] = useState(false)
+  const [countyDest, setCountyDest] = useState(null)
   const router = useRouter()
   const newUrl = 'https://cloud.appwrite.io/v1/storage/buckets/664a27f3002eca35b6ba/files/664a7bb1000c784f60de/view?project=664735b9002945431fdf'
+  const countyId = '6650e7dd00077dfd6ab8'
+  useEffect(() => {
+    const fetchCountyDest = async () => {
+      const res = await getCountyDestinations(countyId, 0)
+      if (res) {
+        setCountyDest(res)
+      }
+    }
+    fetchCountyDest()
+  }, [])
+  //console.log(countyDest)
   const extractFileId = (url) => {
     const match = url.match(/\/files\/([^/]+)/);
     return match ? match[1] : null;
@@ -85,7 +100,7 @@ const AdminHome = () => {
           subtitle='Welcome to the Admin Panel'
         />
         <div className='flex justify-center items-center w-full my-10'>
-          <div className='flex flex-col gap-1 justify-center items-center w-[900px] h-[400px] border rounded-md'>
+          <div className='flex flex-col gap-1 justify-center items-center w-[900px] h-auto border rounded-md'>
             <p className='text-safari-2 text-xl my-8'>Select file to upload</p>
             <input name='myFile' type='file' onChange={handleChange} />
             {imageUploading && 
@@ -100,6 +115,23 @@ const AdminHome = () => {
             }
             <button className='rounded p-4 bg-green-600' onClick={hasFile}>Check</button>
             <button className='rounded p-4 bg-red-600' onClick={handleDelete}>Delete</button>
+            {countyDest && 
+              countyDest.map((dest) => {
+                return (
+                  <div key={dest.$id}>
+                    {dest.name}
+                  </div>
+                )
+              })
+            }
+            <div className='flex m-2 p-2 justify-center items-center'>
+              <div className='flex relative w-[300px] h-[300px]'>
+                <Image fill src={BackImg} alt='back' className='w-[300px] h-[300px] object-cover' />
+              </div>
+              <div className='flex absolute w-[160px] h-[160px]'>
+                <Image fill src={FrontImg} alt='front' className='rounded-full' />
+              </div>
+            </div>
           </div>
         </div>
       </div>

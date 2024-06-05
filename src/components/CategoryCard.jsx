@@ -12,8 +12,9 @@ import { checkImage } from '@/lib/server/userActions'
 import axios from 'axios'
 import CustomLoading from './CustomLoading'
 import { defaultAvatar } from '@/lib/utils'
+import Link from 'next/link'
 
-const CategoryCard = ({ data, role="CLIENT", swal }) => {
+const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
     const defaultUrl = defaultAvatar
@@ -72,20 +73,25 @@ const CategoryCard = ({ data, role="CLIENT", swal }) => {
                 <Image src={data.image} alt='Category' fill sizes='100' className='rounded-md' />
             </div>
             <div className='flex flex-col w-full mt-10'>
-                <div className='category-card-side'>
+                <Link
+                    href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data.name}&categoryId=${data.$id}`} 
+                    className='category-card-side'
+                >
                     <Palmtree />
                     <span className='font-normal'>Destinations</span>
-                    <span className='text-xl'>20</span>
-                </div>
+                    <span className='text-xl'>
+                        {destinations || 0}
+                    </span>
+                </Link>
                 <div className='category-card-side'>
                     <Hotel />
-                    <span className='font-normal'>Accomodation</span>
-                    <span className='text-xl'>20</span>
+                    <span className='font-normal'>Accommodation</span>
+                    <span className='text-xl'>0</span>
                 </div>
                 <div className='category-card-side'>
                     <Luggage />
                     <span className='font-normal'>Tours & Safari</span>
-                    <span className='text-xl'>20</span>
+                    <span className='text-xl'>0</span>
                 </div>
                 {role === 'ADMIN' && 
                     <div className='flex gap-4 justify-center items-center mt-10'>
@@ -116,10 +122,10 @@ const CategoryCard = ({ data, role="CLIENT", swal }) => {
                     Details
                     </TabsTrigger>
                     <TabsTrigger 
-                    value="accomodation" 
+                    value="accommodation" 
                     className="hover:text-safari-2 hover:bg-banner data-[state=active]:bg-banner data-[state=active]:text-safari-2"
                     >
-                    Accomodation
+                    Accommodation
                     </TabsTrigger>
                     <TabsTrigger 
                     value="tours"
@@ -139,16 +145,16 @@ const CategoryCard = ({ data, role="CLIENT", swal }) => {
                         {data.conclusion}
                     </p>
                 </TabsContent>
-                <TabsContent value="accomodation">
+                <TabsContent value="accommodation">
                     <div className='flex flex-col justify-center items-center'>
                     <p className='indent-12'>
                         {role === 'ADMIN' ? (
                             <>
-                            Accomodation services relating <em>{data.name}</em> as advertised with us.
+                            Accommodation services relating <em>{data.name}</em> as advertised with us.
                             </>
                         ) : (
                             <>
-                            If you offer Accomodation services relating to <em>{data.name}</em> kindly advertise with us here.
+                            If you offer Accommodation services relating to <em>{data.name}</em> kindly advertise with us here.
                             </>
                         )}
                     </p>
@@ -177,6 +183,6 @@ const CategoryCard = ({ data, role="CLIENT", swal }) => {
   )
 }
 
-export default withSwal(({swal, data, role}, ref) => (
-    <CategoryCard data={data} role={role} swal={swal} />
+export default withSwal(({swal, data, destinations, role}, ref) => (
+    <CategoryCard data={data} destinations={destinations} role={role} swal={swal} />
 ))

@@ -1,5 +1,7 @@
 'use client'
-import { Caravan, LayoutList, Palmtree, SquareKanban, SwatchBook, Telescope } from 'lucide-react'
+import { LayoutList, Palmtree, SwatchBook, Telescope } from 'lucide-react'
+import { BsStack } from "react-icons/bs"
+import { FcLandscape, FcPackage } from "react-icons/fc"
 import React from 'react'
 import AdminSidebar from './sidebars/AdminSidebar'
 import {
@@ -43,8 +45,8 @@ const Sidebar = () => {
                     <MenubarMenu>
                       <MenubarTrigger className=" focus:bg-transparent data-[state=open]:bg-transparent">
                         <div className='sidebar-menu'>
-                            <Caravan />
-                            <span className='sidebar-menu-text'>Destinations</span>
+                            <BsStack size={20} />
+                            <span className='sidebar-menu-text'>Categories</span>
                         </div>
                       </MenubarTrigger>
                       <MenubarContent className="text-safari-2">
@@ -84,7 +86,7 @@ const Sidebar = () => {
                     <MenubarMenu>
                       <MenubarTrigger className=" focus:bg-transparent data-[state=open]:bg-transparent">
                         <div className='sidebar-menu'>
-                            <Palmtree />
+                            <FcLandscape size={20} />
                             <span className='sidebar-menu-text'>Counties</span>
                         </div>
                       </MenubarTrigger>
@@ -132,7 +134,7 @@ const Sidebar = () => {
                     <MenubarMenu>
                       <MenubarTrigger className=" focus:bg-transparent data-[state=open]:bg-transparent">
                         <div className='sidebar-menu'>
-                            <SwatchBook />
+                            <FcPackage size={20} />
                             <span className='sidebar-menu-text'>Packages</span>
                         </div>
                       </MenubarTrigger>

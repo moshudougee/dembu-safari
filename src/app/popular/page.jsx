@@ -1,57 +1,132 @@
 'use client'
-import { Gem } from 'lucide-react'
-import React from 'react'
+import { ArrowBigLeftDash, ArrowBigRightDash } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import DestinationCard from '@/components/DestinationCard'
 import AdsHorizontal from '@/components/AdsHorizontal'
-import CardImage from '../../images/image9.jpg'
-import Pagination from '@/components/Pagination'
 import { useRouter } from 'next/navigation'
-import BreadCrumb from '@/components/Breadlinks'
+import ContentHeader from '@/components/ContentHeader'
+import { countPopularDestinations, getPopularDestinations } from '@/lib/server/destinationActions'
+import CustomLoading from '@/components/CustomLoading'
+import CustomError from '@/components/CustomError'
+import { defaultSquareAvatar } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
+import { GiElephant } from "react-icons/gi"
 
   
 
 const Popular = () => {
-    const crumbPage = "Popular"
-    const tempCards = [1, 2, 3, 4, 5, 6]
+    const [data, setData] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const [page, setPage] = useState(0)
+    const [total, setTotal] = useState(null)
+    const [totalLoading, setTotalLoading] = useState(false)
+    const crumbPage = "Popular Destinations"
     const router = useRouter()
+    const defaultUrl = defaultSquareAvatar
+    useEffect(() => {
+      const fetchTotal = async () => {
+          setTotalLoading(true)
+          try {
+              const res = await countPopularDestinations()
+              if(res) {
+                  setTotal(res)
+              }
+          } catch (error) {
+              setError('Error fetching Total is '+error)
+          } finally {
+              setTotalLoading(false)
+          }
+      }
+      fetchTotal()
+    }, [])
+    const limit = 6
+    let totalPages = 0
+    if(total && total > limit) {
+        totalPages = Math.ceil(total / limit)
+    }
+    useEffect(() => {
+        const offset = page * limit
+        const fetchDestinations = async () => {
+            setIsLoading(true)
+            try {
+                const res = await getPopularDestinations(offset)
+                if(res) {
+                    setData(res)
+                }
+            } catch (error) {
+                setError('Error fetching counties is '+error)
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        fetchDestinations()
+    }, [page])
     
   return (
-    <div className=' min-h-screen'>
-      <div className='flex w-full m-2 ps-4'>
-        <BreadCrumb 
-          crumbPage={crumbPage}
-        />
-
-      </div>
-      <hr className="hr"/>
-      <div className="flex flex-col h-auto w-full">
-        <div className="flex gap-2 w-full m-5 text-safari-1">
-          <Gem />
-          <span className="font-normal text-[18px]">Popular Destinations</span>
-        </div>
-      </div>
-      <hr className="hr"/>
+    <div className='min-h-screen'>
+      <ContentHeader
+        crumbPage={crumbPage}
+        icon={<GiElephant size={24} />}
+        title={crumbPage}
+      />
       <div className='grid grid-cols-3 h-auto w-full ps-2 my-4'>
-        {tempCards.map((card) => {
+        {isLoading || totalLoading ? (
+          <CustomLoading />
+        ) : error ? (
+          <CustomError />
+        ) : (
+          data?.map((destination) => {
             const viewDestination = () => {
-                return router.push(`/popular/${card}`)
+                return router.push(`/popular/${destination.$id}`)
+            }
+            let image = ''
+            if(destination.images.length > 0) {
+              image = destination.images[0]
+            } else {
+              image = defaultUrl
             }
             return (
-            <div key={card} className='flex w-[380px] h-[500px] mb-2' onClick={viewDestination}>
+            <div key={destination.$id} className='flex w-[380px] h-[500px] mb-2' onClick={viewDestination}>
                 <DestinationCard 
-                    title='Maasai Mara National Reserve'
-                    description="Situated to the west of Nairobi, on Tanzania's northern border.Situated to the west of Nairobi, on Tanzania's northern border."
-                    image={CardImage}
-                    location="Narok County"
+                    title={destination.name}
+                    description={destination.intro}
+                    image={image}
+                    location={destination.countyId.name}
                 />
             </div>
             )
-        })}
+          })
+        )}
       </div>
       <hr className="hr"/>
         <AdsHorizontal />
       <hr className="hr"/>
-        <Pagination />
+      {total > limit && 
+        <div className='pagination'>
+            <div className='pagination-item'>
+                <Button 
+                    className='pagination-button'
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+                    disabled={page === 0}
+                >
+                    <ArrowBigLeftDash />
+                    <span className='font-normal'>Previous</span>
+                </Button>
+                <div className='flex text-safari-2'>
+                    <span className='font-normal'>{page + 1} of {totalPages}</span>
+                </div>
+                <Button 
+                    className='pagination-button'
+                    onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+                    disabled={page >= totalPages - 1}
+                >
+                    <span className='font-normal'>Next</span>
+                    <ArrowBigRightDash />
+                </Button>
+            </div>
+        </div>
+      }
       <hr className="hr"/>
     </div>
   )

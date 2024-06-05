@@ -1,30 +1,78 @@
 'use client'
 import Image from "next/image";
-import CardImage from '../images/image9.jpg'
-import Link from "next/link";
 import Hero from "@/components/Hero";
-import { Gem, Telescope } from "lucide-react";
+import { ArrowBigLeftDash, ArrowBigRightDash, Telescope } from "lucide-react";
 import DestinationCard from "@/components/DestinationCard";
-import Pagination from "@/components/Pagination";
 import AdsHorizontal from "@/components/AdsHorizontal";
 import { useRouter } from "next/navigation";
 import useCategories from "@/hooks/useCategories";
 import CustomLoading from "@/components/CustomLoading";
 import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { defaultSquareAvatar } from "@/lib/utils";
+import { countPopularDestinations, getPopularDestinations } from "@/lib/server/destinationActions";
+import CustomError from "@/components/CustomError";
+import { GiElephant } from "react-icons/gi";
 
 
 
 export default function Home() {
-  const { data: slides, error, isLoading } = useCategories()
-  const tempCards = [1, 2, 3, 4, 5, 6]
+  const { data: slides, error: categoryError, isLoading: categoriesLoading } = useCategories()
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
+  const [data, setData] = useState(null)
+  const [page, setPage] = useState(0)
+  const [total, setTotal] = useState(null)
+  const [totalLoading, setTotalLoading] = useState(false)
+  const defaultUrl = defaultSquareAvatar
   const router = useRouter()
+  useEffect(() => {
+    const fetchTotal = async () => {
+        setTotalLoading(true)
+        try {
+            const res = await countPopularDestinations()
+            if(res) {
+                setTotal(res)
+            }
+        } catch (error) {
+            console.log(error)
+            setError('Error occured while fetching Total.')
+        } finally {
+            setTotalLoading(false)
+        }
+    }
+    fetchTotal()
+  }, [])
+  const limit = 6
+  let totalPages = 0
+  if(total && total > limit) {
+    totalPages = Math.ceil(total / limit)
+  }
+  useEffect(() => {
+    const offset = page * limit
+    const fetchDestinations = async () => {
+        setIsLoading(true)
+        try {
+            const res = await getPopularDestinations(offset)
+            if(res) {
+                setData(res)
+            }
+        } catch (error) {
+            console.log(error)
+            setError('Error occured while fetching destinations')
+        } finally {
+            setIsLoading(false)
+        }
+    }
+    fetchDestinations()
+  }, [page])
   return (
-    <div className="max-h-screen">
+    <div className="min-h-screen">
       <div className="flex flex-col h-auto w-full max-lg:hidden">
-        {isLoading ? (
+        {categoriesLoading ? (
           <CustomLoading />
-        ) : error ? (
-          <div className=" text-safari-2 text-center">{error}</div>
+        ) : categoryError ? (
+          <CustomError />
         ) : (
           <Hero autoSlide={true}>
           {slides.map((slide) => {
@@ -60,32 +108,68 @@ export default function Home() {
       </div>
       <div className="flex flex-col h-auto w-full">
         <div className="flex gap-2 w-full m-5 text-safari-1">
-          <Gem />
+          <GiElephant size={24} />
           <span className="font-normal text-[18px]">Popular Destinations</span>
         </div>
       </div>
       <hr className="hr"/>
-      <div className="grid grid-cols-3 h-auto w-full ps-2 my-4">
-        {tempCards.map((card) => {
-          const viewDestination = () => {
-              return router.push(`/popular/${card}`)
-          }
-          return (
-            <div key={card} className="flex w-[380px] h-[500px] mb-2" onClick={viewDestination}>
-              <DestinationCard 
-                title='Maasai Mara National Reserve'
-                description="Situated to the west of Nairobi, on Tanzania's northern border.Situated to the west of Nairobi, on Tanzania's northern border."
-                image={CardImage}
-                location="Narok County"
-              />
+      <div className='grid grid-cols-3 h-auto w-full ps-2 my-4'>
+        {isLoading || totalLoading ? (
+          <CustomLoading />
+        ) : error ? (
+          <CustomError />
+        ) : (
+          data?.map((destination) => {
+            const viewDestination = () => {
+                return router.push(`/popular/${destination.$id}`)
+            }
+            let image = ''
+            if(destination.images.length > 0) {
+              image = destination.images[0]
+            } else {
+              image = defaultUrl
+            }
+            return (
+            <div key={destination.$id} className='flex w-[380px] h-[500px] mb-2' onClick={viewDestination}>
+                <DestinationCard 
+                    title={destination.name}
+                    description={destination.intro}
+                    image={image}
+                    location={destination.countyId.name}
+                />
             </div>
-          )
-      })}
+            )
+          })
+        )}
       </div>
       <hr className="hr"/>
       <AdsHorizontal />
       <hr className="hr"/>
-        <Pagination />
+      {total > limit && 
+        <div className='pagination'>
+            <div className='pagination-item'>
+                <Button 
+                    className='pagination-button'
+                    onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
+                    disabled={page === 0}
+                >
+                    <ArrowBigLeftDash />
+                    <span className='font-normal'>Previous</span>
+                </Button>
+                <div className='flex text-safari-2'>
+                    <span className='font-normal'>{page + 1} of {totalPages}</span>
+                </div>
+                <Button 
+                    className='pagination-button'
+                    onClick={() => setPage((prev) => Math.min(prev + 1, totalPages - 1))}
+                    disabled={page >= totalPages - 1}
+                >
+                    <span className='font-normal'>Next</span>
+                    <ArrowBigRightDash />
+                </Button>
+            </div>
+        </div>
+      }
       <hr className="hr"/>
     </div>
   )

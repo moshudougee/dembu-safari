@@ -12,8 +12,9 @@ import { checkImage } from '@/lib/server/userActions'
 import axios from 'axios'
 import CustomLoading from './CustomLoading'
 import { defaultAvatar } from '@/lib/utils'
+import Link from 'next/link'
 
-const CountyCard = ({ data, role="CLIENT", swal }) => {
+const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     const [isLoading, setIsLoading] = useState(false)
     const router = useRouter()
     const defaultUrl = defaultAvatar
@@ -27,6 +28,8 @@ const CountyCard = ({ data, role="CLIENT", swal }) => {
     const defaultId = extractFileId(defaultUrl)
     const area = data?.area.toLocaleString()
     const population = data?.population.toLocaleString()
+    
+    
     const handleEdit = () => {
         router.push(`/admin/counties/edit?id=${data.$id}&imageId=${imageId}&flagId=${flagId}`)
     }
@@ -70,18 +73,23 @@ const CountyCard = ({ data, role="CLIENT", swal }) => {
     if (isLoading) {
         return <CustomLoading />
     }
-  return (
+ return (
     <div className='category-card'>
         <div className='category-card-main'>
             <div className='category-card-image'>
                 <Image src={data.image} alt='Category' fill sizes='100' className='rounded-md' priority />
             </div>
             <div className='flex flex-col w-full mt-8'>
-                <div className='county-card-side'>
+                <Link 
+                    href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data.name}&countyId=${data.$id}`} 
+                    className='county-card-side'
+                >
                     <Palmtree />
                     <span className='font-normal'>Destinations</span>
-                    <span className='text-xl'>20</span>
-                </div>
+                    <span className='text-xl'>
+                        {destinations || 0}
+                    </span>
+                </Link>
                 <div className='county-card-side'>
                     <MapPin />
                     <span className='font-normal'>Capital</span>
@@ -99,13 +107,13 @@ const CountyCard = ({ data, role="CLIENT", swal }) => {
                 </div>
                 <div className='county-card-side'>
                     <Hotel />
-                    <span className='font-normal'>Accomodation</span>
-                    <span className='text-xl'>20</span>
+                    <span className='font-normal'>Accommodation</span>
+                    <span className='text-xl'>0</span>
                 </div>
                 <div className='county-card-side'>
                     <Luggage />
                     <span className='font-normal'>Tours & Safari</span>
-                    <span className='text-xl'>20</span>
+                    <span className='text-xl'>0</span>
                 </div>
                 {role === 'ADMIN' && 
                     <div className='flex gap-4 justify-center items-center mt-8'>
@@ -136,10 +144,10 @@ const CountyCard = ({ data, role="CLIENT", swal }) => {
                     Details
                     </TabsTrigger>
                     <TabsTrigger 
-                    value="accomodation" 
+                    value="accommodation" 
                     className="hover:text-safari-2 hover:bg-banner data-[state=active]:bg-banner data-[state=active]:text-safari-2"
                     >
-                    Accomodation
+                    Accommodation
                     </TabsTrigger>
                     <TabsTrigger 
                     value="tours"
@@ -153,16 +161,16 @@ const CountyCard = ({ data, role="CLIENT", swal }) => {
                         {data.details}
                     </p>
                 </TabsContent>
-                <TabsContent value="accomodation">
+                <TabsContent value="accommodation">
                     <div className='flex flex-col justify-center items-center'>
                     <p className='indent-12'>
                         {role === 'ADMIN' ? (
                             <>
-                            Accomodation services located in <em>{data.name}</em> as advertised with us.
+                            Accommodation services located in <em>{data.name}</em> as advertised with us.
                             </>
                         ) : (
                             <>
-                            If you offer Accomodation services located in <em>{data.name}</em> kindly advertise with us here.
+                            If you offer Accommodation services located in <em>{data.name}</em> kindly advertise with us here.
                             </>
                         )}
                     </p>
@@ -191,6 +199,6 @@ const CountyCard = ({ data, role="CLIENT", swal }) => {
   )
 }
 
-export default withSwal(({swal, data, role}, ref) => (
-    <CountyCard data={data} role={role} swal={swal} />
+export default withSwal(({swal, data, destinations, role}, ref) => (
+    <CountyCard data={data} destinations={destinations} role={role} swal={swal} />
 ))

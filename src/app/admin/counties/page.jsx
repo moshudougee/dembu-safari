@@ -1,5 +1,6 @@
 'use client'
 import ContentHeader from '@/components/ContentHeader'
+import CustomError from '@/components/CustomError'
 import CustomLoading from '@/components/CustomLoading'
 import CountiesTable from '@/components/admin/CountiesTable'
 import { Button } from '@/components/ui/button'
@@ -40,7 +41,7 @@ const AdminCounties = () => {
     
     const limit = 10
     let totalPages = 0
-    if(total) {
+    if(total && total > limit) {
         totalPages = Math.ceil(total / limit)
     }
     
@@ -79,17 +80,18 @@ const AdminCounties = () => {
                     title='Counties'
                     subtitle='View Counties List'
                 />
-                <div className='flex flex-col justify-center items-center w-full max-w-[1000px] px-6 mx-10 my-10'>
+                <div className='card-container'>
                     {isLoading || totalLoading ? (
                         <CustomLoading />
                     ) : error ? (
-                        <div className='text-safari-2'>{error}</div>
+                        <CustomError />
                     ) : (
                         <CountiesTable 
                             data={data}
                         />
                     )}
                 </div>
+                {total > limit && 
                 <div className='pagination'>
                     <div className='pagination-item'>
                         <Button 
@@ -113,6 +115,7 @@ const AdminCounties = () => {
                         </Button>
                     </div>
                 </div>
+                }
             </div>
         )
     }else {

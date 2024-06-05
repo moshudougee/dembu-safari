@@ -21,6 +21,11 @@ export const authFormSchema = (type) => z.object({
   
 })
 
+export const profileSchema = () => z.object({
+  firstName: z.string().min(3).max(100),
+  lastName: z.string().min(3).max(100)
+})
+
 export const addCategorySchema = () => z.object({
   name: z.string().min(3).max(200, {message: "Name must be atleast 3 and not more than 200 characters"}),
   intro: z.string().min(3).max(1000, {message: "Introduction must be atleast 3 and not more than 1000 characters"}),
@@ -46,6 +51,61 @@ export const addCountySchema = () => z.object({
   population: z.coerce.number().int().gte(1, {message: "Population must be atleast 1"})
     .lte(10000000, {message: "Population must be less than 10000000"}),
   details: z.string().min(3).max(2000, {message: "Details must be atleast 3 and not more than 1000 characters"}),
+})
+
+export const addDestinationSchema = () => z.object({
+  name: z.string().min(3).max(200, {message: "Name must be atleast 3 and not more than 200 characters"}),
+  intro: z.string().min(3).max(1000, {message: "Introduction must be atleast 3 and not more than 1000 characters"}),
+  details: z.string().min(3).max(2000, {message: "Details must be atleast 3 and not more than 2000 characters"}),
+  conclusion: z.string().min(3).max(1000, {message: "Conclusion must be atleast 3 and not more than 1000 characters"}),
+  popular: z.string({message: "Please select popularity status"}),
+  location: z.string().min(3).max(500, {message: "Location must be atleast 3 and not more than 500 characters"}),
+  countyId: z.string({message: "Please select County"}),
+  categoryId: z.string({message: "Please select Category"})
+})
+
+export const addAboutSchema = () => z.object({
+  intro: z.string().min(3).max(1000, {message: "Introduction must be atleast 3 and not more than 1000 characters"}),
+  mission: z.string().min(3).max(1000, {message: "Mission must be atleast 3 and not more than 1000 characters"}),
+  offer: z.array(
+    z.object({
+      title: z.string().min(1, 'Title is required').max(300, {message: "Title should not be more than 300 characters"}),
+      details: z.string().min(1, 'Details are required').max(1000, {message: "Details should not be more than 1000 characters"}),
+    })
+  ),
+  choose: z.array(
+    z.object({
+      title: z.string().min(1, 'Title is required').max(300, {message: "Title should not be more than 300 characters"}),
+      details: z.string().min(1, 'Details are required').max(1000, {message: "Details should not be more than 1000 characters"}),
+    })
+  ),
+  conclusion: z.string().min(3).max(1000, {message: "Conclusion must be atleast 3 and not more than 1000 characters"})
+})
+
+export const forgotSchema = () => z.object({
+  email: z.string().email()
+})
+
+export const resetSchema = () => z.object({
+  password: z.string().min(6),
+  passwordConfirm: z.string().min(6)
+}).refine((value) => value.passwordConfirm === value.password, 'Passwords do not match')
+
+export const contactSchema = () => z.object({
+  firstName: z.string().min(3, {message: "First name must be at least 3 characters"})
+    .max(100, {message: "First name must not be more than 100 characters"}),
+  lastName: z.string().min(3, {message: "Last name must be at least 3 characters"})
+    .max(100, {message: "Last name must must not be more than 100 characters"}),
+  email: z.string().email(),
+  subject: z.string().min(3, {message: "Subject must be at least 3 characters"})
+    .max(100, {message: "Subject must not be more than 100 characters"}),
+  message: z.string().min(3, {message: "Message must be at least 3 characters"})
+    .max(2000, {message: "Message must not be more than 2000 characters"})
+})
+
+export const messageReplySchema = () => z.object({
+  message: z.string().min(3, {message: "Message must be at least 3 characters"})
+    .max(2000, {message: "Message must not be more than 2000 characters"})
 })
 
 export const parseStringify = (value) => JSON.parse(JSON.stringify(value))

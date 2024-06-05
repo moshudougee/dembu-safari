@@ -3,7 +3,7 @@ import { Hotel, Luggage } from "lucide-react";
 export const adCategories = [
     {
         id: 1,
-        title: "Accomodation",
+        title: "Accommodation",
         icon: <Hotel />
     },
     {

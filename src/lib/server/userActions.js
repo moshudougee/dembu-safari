@@ -1,6 +1,6 @@
 'use server'
 
-import { ID, InputFile, Query } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { createAdminClient, createSessionClient } from "./appwrite"
 import { parseStringify } from "../utils";
 import { cookies } from "next/headers";
@@ -75,9 +75,14 @@ export const login = async ({ email, password }) => {
 }
 
 export const register = async ({ password, ...userData }) => {
-    const { email, firstName, lastName } = userData
+    const { email, firstName, lastName, imageUrl } = userData
     const name = `${firstName} ${lastName}`
-    let newUserAccount
+    let newUserAccount, avatarUrl
+    if (imageUrl) {
+        avatarUrl = imageUrl
+    }else {
+        avatarUrl = '/images/profile.jpeg'
+    }
     try {
         const { account, database, avatars } = await createAdminClient()
 
@@ -88,7 +93,7 @@ export const register = async ({ password, ...userData }) => {
             name
         )
         if (!newUserAccount) throw new Error('Error creating user')
-        const avatarUrl = '/images/profile.jpeg'
+        
         const newUser = await database.createDocument(
             DATABASE_ID,
             USER_INFO_ID,
@@ -117,6 +122,34 @@ export const register = async ({ password, ...userData }) => {
         
     } catch (error) {
         console.log('Error', error)
+    }
+}
+
+export const updateUser = async (id, userData) => {
+    const { firstName, lastName, imageUrl } = userData
+    let avatarUrl
+    if (imageUrl) {
+        avatarUrl = imageUrl
+    }else {
+        avatarUrl = '/images/profile.jpeg'
+    }
+    try {
+        const { database } = await createAdminClient()
+        const user = await database.updateDocument(
+            DATABASE_ID,
+            USER_INFO_ID,
+            id,
+            {
+                firstName,
+                lastName,
+                avatar: avatarUrl
+            }
+        )
+        if (!user) throw new Error('Error updating user')
+        return parseStringify(user)
+    } catch (error) {
+        console.log('Error', error)
+        return false
     }
 }
 
@@ -161,5 +194,41 @@ export const checkImage = async (fileId) => {
     } catch (error) {
         console.log(error)
         return false
+    }
+}
+
+export const forgotPassword = async (email) => {
+    try {
+        const { account, database } = await createAdminClient()
+        const response = await database.listDocuments(
+            DATABASE_ID,
+            USER_INFO_ID,
+            [Query.equal('email', [email])]
+        )
+        if (!response) throw new Error('Error checking email')
+        //console.log(response)
+        if(response.total > 0) {
+            const domain = process.env.NEXT_PUBLIC_SITE_URL
+            const url = `${domain}/forgot/reset`
+            await account.createRecovery(email, url)
+            return true
+        } else {
+            console.log('Server Error, Email not found')
+            return false
+        }
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
+export const resetPassword = async (userId, secret, password, confirmPassword) => {
+    try {
+        const { account } = await createAdminClient()
+        await account.updateRecovery(userId, secret, password, confirmPassword)
+        return true
+    } catch (error) {
+       console.log(error)
+       return false 
     }
 }

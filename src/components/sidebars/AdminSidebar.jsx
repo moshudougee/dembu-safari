@@ -116,14 +116,14 @@ const AdminSidebar = () => {
                       </MenubarTrigger>
                       <MenubarContent className="text-safari-2">
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/destinations' className='menubar-item'>
                                 <Layers3 />
                                 <span className="menubar-text">Destinations</span>
                             </Link>
                         </MenubarItem>
                         <MenubarSeparator />
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/destinations/add' className='menubar-item'>
                                 <CopyPlus />
                                 <span className="menubar-text">Add</span>
                             </Link>
@@ -146,12 +146,18 @@ const AdminSidebar = () => {
                       </MenubarTrigger>
                       <MenubarContent className="text-safari-2">
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/about' className='menubar-item'>
                                 <Layers3 />
                                 <span className="menubar-text">About</span>
                             </Link>
                         </MenubarItem>
                         <MenubarSeparator />
+                        <MenubarItem>
+                            <Link href='/admin/about/add' className='menubar-item'>
+                                <CopyPlus />
+                                <span className="menubar-text">Add</span>
+                            </Link>
+                        </MenubarItem>
                       </MenubarContent>
                     </MenubarMenu>
                   </Menubar>
@@ -169,7 +175,7 @@ const AdminSidebar = () => {
                       </MenubarTrigger>
                       <MenubarContent className="text-safari-2">
                         <MenubarItem>
-                            <Link href='/' className='menubar-item'>
+                            <Link href='/admin/contact' className='menubar-item'>
                                 <BookUser />
                                 <span className="menubar-text">Contacts</span>
                             </Link>
