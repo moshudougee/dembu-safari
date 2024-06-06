@@ -143,7 +143,7 @@ export default function Home() {
         )}
       </div>
       <hr className="hr"/>
-      <div className="adhorizontal">
+      <div className="ad-horizontal">
         <AdsHorizontal />
       </div>
       <hr className="hr"/>
@@ -172,6 +172,10 @@ export default function Home() {
             </div>
         </div>
       }
+      <hr className="hr"/>
+      <div className="ad-horizontal">
+        <AdsHorizontal slot="9538296590" />
+      </div>
       <hr className="hr"/>
     </div>
   )

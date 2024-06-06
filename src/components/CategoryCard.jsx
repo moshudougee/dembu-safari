@@ -161,15 +161,15 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                         </p>
                         <hr className="hr-ad-horizontal"/>
                         <div className='ad-horizontal'>
-                            <AdsHorizontal />
+                            <AdsHorizontal slot='7356553056' />
                         </div>
                         <hr className="hr-ad-horizontal"/>
                         <div className='ad-horizontal'>
-                            <AdsHorizontal />
+                            <AdsHorizontal slot='8033643235' />
                         </div>
                         <hr className="hr-ad-horizontal"/>
                         <div className='ad-horizontal'>
-                            <AdsHorizontal />
+                            <AdsHorizontal slot='8094919659' />
                         </div>
                         <hr className="hr-ad-horizontal"/>
                     </div>

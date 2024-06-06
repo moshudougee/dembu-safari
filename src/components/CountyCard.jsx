@@ -177,15 +177,15 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                         </p>
                         <hr className="hr-ad-horizontal"/>
                         <div className='ad-horizontal'>
-                            <AdsHorizontal />
+                            <AdsHorizontal slot='4702469553' />
                         </div>
                         <hr className="hr-ad-horizontal"/>
                         <div className='ad-horizontal'>
-                            <AdsHorizontal />
+                            <AdsHorizontal slot='2203851612' />
                         </div>
                         <hr className="hr-ad-horizontal"/>
                         <div className='ad-horizontal'>
-                            <AdsHorizontal />
+                            <AdsHorizontal slot='1693162835' />
                         </div>
                         <hr className="hr-ad-horizontal"/>
                     </div>

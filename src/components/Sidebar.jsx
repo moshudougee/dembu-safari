@@ -169,10 +169,10 @@ const Sidebar = () => {
         ) : (
           <>
             <div className='ad-square'>
-              <AdSquare />
+              <AdSquare slot='8799929998' />
             </div>
             <div className='ad-square'>
-              <AdSquare />
+              <AdSquare slot='4474791731' />
             </div>
           </>
         ) 

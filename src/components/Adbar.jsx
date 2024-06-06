@@ -31,10 +31,10 @@ const Adbar = () => {
             <AdSquare />
           </div>
           <div className='ad-square'>
-            <AdSquare />
+            <AdSquare slot='8250385212' />
           </div>
           <div className='ad-square'>
-            <AdSquare />
+            <AdSquare slot='2318282129' />
           </div>
          </div>
       </div>
