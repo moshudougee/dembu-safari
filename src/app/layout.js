@@ -29,6 +29,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning={true} className="scroll-smooth">
+      <head>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6856025729636564"
+        crossorigin="anonymous">
+      </script>
+      </head>
       <body className={`${inter.variable} ${pinyon.variable} ${lobster.variable}`}>
         <GlobalProvider>
           <Toaster />
