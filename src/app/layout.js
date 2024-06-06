@@ -30,13 +30,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning={true} className="scroll-smooth">
       <head>
-      <script 
-        async 
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6856025729636564"
-        crossOrigin="anonymous"
-        strategy='afterInteractive'
-      >
-      </script>
+        <link rel="icon" href="/favicon.ico" />
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6856025729636564"
+          crossOrigin="anonymous"
+          strategy='afterInteractive'
+        >
+        </script>
       </head>
       <body className={`${inter.variable} ${pinyon.variable} ${lobster.variable}`}>
         <GlobalProvider>
