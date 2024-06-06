@@ -143,7 +143,9 @@ export default function Home() {
         )}
       </div>
       <hr className="hr"/>
-      <AdsHorizontal />
+      <div className="adhorizontal">
+        <AdsHorizontal />
+      </div>
       <hr className="hr"/>
       {total > limit && 
         <div className='pagination'>

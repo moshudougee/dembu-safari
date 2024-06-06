@@ -1,10 +1,24 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 
-const AdsHorizontal = () => {
+const AdsHorizontal = ({ slot="5474928500" }) => {
+  useEffect(() => {
+    try {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (error) {
+      console.log(error.message)
+    }
+  }, [])
+  
   return (
-    <div className="flex h-[160px] border w-full my-3">
-        Ads
-    </div>
+    <ins 
+      className="adsbygoogle"
+      style={{display: "block"}}
+      data-ad-client="ca-pub-6856025729636564"
+      data-ad-slot= {slot}
+      data-ad-format="auto"
+      data-full-width-responsive="true">
+    </ins>
   )
 }
 

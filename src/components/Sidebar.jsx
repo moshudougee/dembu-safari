@@ -19,6 +19,7 @@ import { useGlobalContext } from '@/context/GlobalProvider'
 import CustomLoading from './CustomLoading'
 import useCategories from '@/hooks/useCategories'
 import useCounties from '@/hooks/useCounties'
+import AdSquare from './AdSquare'
 
 const Sidebar = () => {
     const { user, loggedIn, loading } = useGlobalContext()
@@ -163,8 +164,19 @@ const Sidebar = () => {
                 </li>
             </ul>
         </div>
-        {loggedIn && user?.role === 'ADMIN' && 
+        {loggedIn && user?.role === 'ADMIN' ? (
           <AdminSidebar />
+        ) : (
+          <>
+            <div className='ad-square'>
+              <AdSquare />
+            </div>
+            <div className='ad-square'>
+              <AdSquare />
+            </div>
+          </>
+        ) 
+          
         }
        
     </div>

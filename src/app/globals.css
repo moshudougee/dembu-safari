@@ -241,6 +241,9 @@
     .hr {
       @apply flex w-auto mx-10 border rounded-md
     }
+    .hr-ad-horizontal {
+      @apply flex xl:w-[800px] border rounded-md my-1
+    }
     .breadcrumb {
       @apply flex w-full m-2 ps-4
     }
@@ -384,6 +387,12 @@
   }
   .btn-delete {
     @apply flex gap-2 bg-transparent text-red-700
+  }
+  .ad-horizontal {
+    @apply flex w-full h-44 border my-2
+  }
+  .ad-square {
+    @apply flex w-full h-[200px] border my-1
   }
   .footer {
     @apply flex flex-col w-full min-h-40 mt-2

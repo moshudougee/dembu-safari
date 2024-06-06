@@ -4,6 +4,7 @@ import { WalletCards } from 'lucide-react'
 import AdminRightbar from './sidebars/AdminRightbar'
 import { useGlobalContext } from '@/context/GlobalProvider'
 import CustomLoading from './CustomLoading'
+import AdSquare from './AdSquare'
 
 const Adbar = () => {
   const { loggedIn, user, loading } = useGlobalContext()
@@ -25,9 +26,17 @@ const Adbar = () => {
               <span className='sidebar-menu-text'>Ads</span>
           </div>
         </div>
-        <div className='flex mt-1'>
-          <span>Ads</span>
-        </div>
+        <div className='flex flex-col mt-1'>
+          <div className='ad-square'>
+            <AdSquare />
+          </div>
+          <div className='ad-square'>
+            <AdSquare />
+          </div>
+          <div className='ad-square'>
+            <AdSquare />
+          </div>
+         </div>
       </div>
     )
   }

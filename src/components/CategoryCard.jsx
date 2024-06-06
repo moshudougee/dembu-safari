@@ -13,6 +13,7 @@ import axios from 'axios'
 import CustomLoading from './CustomLoading'
 import { defaultAvatar } from '@/lib/utils'
 import Link from 'next/link'
+import AdsHorizontal from './AdsHorizontal'
 
 const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -147,17 +148,30 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                 </TabsContent>
                 <TabsContent value="accommodation">
                     <div className='flex flex-col justify-center items-center'>
-                    <p className='indent-12'>
-                        {role === 'ADMIN' ? (
-                            <>
-                            Accommodation services relating <em>{data.name}</em> as advertised with us.
-                            </>
-                        ) : (
-                            <>
-                            If you offer Accommodation services relating to <em>{data.name}</em> kindly advertise with us here.
-                            </>
-                        )}
-                    </p>
+                        <p className='indent-12'>
+                            {role === 'ADMIN' ? (
+                                <>
+                                Accommodation services relating <em>{data.name}</em> as advertised with us.
+                                </>
+                            ) : (
+                                <>
+                                If you offer Accommodation services relating to <em>{data.name}</em> kindly advertise with us here.
+                                </>
+                            )}
+                        </p>
+                        <hr className="hr-ad-horizontal"/>
+                        <div className='ad-horizontal'>
+                            <AdsHorizontal />
+                        </div>
+                        <hr className="hr-ad-horizontal"/>
+                        <div className='ad-horizontal'>
+                            <AdsHorizontal />
+                        </div>
+                        <hr className="hr-ad-horizontal"/>
+                        <div className='ad-horizontal'>
+                            <AdsHorizontal />
+                        </div>
+                        <hr className="hr-ad-horizontal"/>
                     </div>
                     
                 </TabsContent>
