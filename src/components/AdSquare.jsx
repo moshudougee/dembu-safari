@@ -3,15 +3,19 @@ import React, { useEffect } from 'react'
 const AdSquare = ({ slot="9551471558" }) => {
     useEffect(() => {
         try {
-          (adsbygoogle = window.adsbygoogle || []).push({});
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
         } catch (error) {
           console.log(error.message)
         }
       }, [])
   return (
     <ins 
-        className="adsbygoogle w-[210px] max-h-[210px]"
-        style={{display: "block"}}
+        className="adsbygoogle gog-square"
+        style={{
+          display: "block",
+          width: "210px",
+          maxHeight: "210px"  
+        }}
         data-ad-client="ca-pub-6856025729636564"
         data-ad-slot={slot}
         data-ad-format="auto"
