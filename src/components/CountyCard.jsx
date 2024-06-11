@@ -21,23 +21,23 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     const defaultUrl = defaultAvatar
     //extract fileId
     const extractFileId = (url) => {
-        const match = url.match(/\/files\/([^/]+)/);
+        const match = url?.match(/\/files\/([^/]+)/);
         return match ? match[1] : null;
     }
-    const imageId = extractFileId(data.image)
-    const flagId = extractFileId(data.flag)
+    const imageId = extractFileId(data?.image)
+    const flagId = extractFileId(data?.flag)
     const defaultId = extractFileId(defaultUrl)
     const area = data?.area.toLocaleString()
     const population = data?.population.toLocaleString()
     
     
     const handleEdit = () => {
-        router.push(`/admin/counties/edit?id=${data.$id}&imageId=${imageId}&flagId=${flagId}`)
+        router.push(`/admin/counties/edit?id=${data?.$id}&imageId=${imageId}&flagId=${flagId}`)
     }
     const handleDelete = () => {
         swal.fire({
             title: 'Are you sure?',
-            text: `Do you want to delete ${data.name}?`,
+            text: `Do you want to delete ${data?.name}?`,
             showCancelButton: true,
             cancelButtonText: 'Cancel',
             confirmButtonText: 'Yes, Delete!',
@@ -46,7 +46,7 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
         }).then(async result => {
             if(result.isConfirmed) {
                 setIsLoading(true)
-                const res = await deleteCounty(data.$id)
+                const res = await deleteCounty(data?.$id)
                 if(res) {
                     const hasImage = await checkImage(imageId)
                     const hasFlag = await checkImage(flagId)
@@ -78,11 +78,11 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     <div className='category-card'>
         <div className='category-card-main'>
             <div className='category-card-image'>
-                <Image src={data.image} alt='Category' fill sizes='100' className='rounded-md' priority />
+                <Image src={data?.image} alt='Category' fill sizes='100' className='rounded-md' priority />
             </div>
-            <div className='flex flex-col w-full mt-8'>
+            <div className='flex flex-col w-full 2xl:w-1/3 items-center mt-8'>
                 <Link 
-                    href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data.name}&countyId=${data.$id}`} 
+                    href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data?.name}&countyId=${data?.$id}`} 
                     className='county-card-side'
                 >
                     <Palmtree />
@@ -94,7 +94,7 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                 <div className='county-card-side'>
                     <MapPin />
                     <span className='font-normal'>Capital</span>
-                    <span className='text-sm'>{data.capital}</span>
+                    <span className='text-sm'>{data?.capital}</span>
                 </div>
                 <div className='county-card-side'>
                     <LandPlot />
@@ -135,8 +135,8 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
             </div>
         </div>
         <hr className="hr"/>
-        <div className='flex justify-center items-center m-1'>
-            <Tabs defaultValue="details" className="flex flex-col w-[1000px] min-h-[600px] rounded-md shadow-md p-4 mx-10">
+        <div className='tabs'>
+            <Tabs defaultValue="details" className="flex flex-col w-full rounded-md shadow-md p-4 mx-10">
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 
@@ -159,7 +159,7 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                 </TabsList>
                 <TabsContent value="details">
                     <p className='indent-12'>
-                        {data.details}
+                        {data?.details}
                     </p>
                 </TabsContent>
                 <TabsContent value="accommodation">
@@ -167,11 +167,11 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                         <p className='indent-12'>
                             {role === 'ADMIN' ? (
                                 <>
-                                Accommodation services located in <em>{data.name}</em> as advertised with us.
+                                Accommodation services located in <em>{data?.name}</em> as advertised with us.
                                 </>
                             ) : (
                                 <>
-                                If you offer Accommodation services located in <em>{data.name}</em> kindly advertise with us here.
+                                If you offer Accommodation services located in <em>{data?.name}</em> kindly advertise with us here.
                                 </>
                             )}
                         </p>
@@ -196,11 +196,11 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                     <p className='indent-12'>
                         {role === 'ADMIN' ? (
                             <>
-                            Tours & Safari services located in <em>{data.name}</em> as advertised with us.
+                            Tours & Safari services located in <em>{data?.name}</em> as advertised with us.
                             </>
                         ) : (
                             <>
-                            If you offer Tours & Safari services located in <em>{data.name}</em> kindly advertise with us here.
+                            If you offer Tours & Safari services located in <em>{data?.name}</em> kindly advertise with us here.
                             </>
                         )}
                     </p>

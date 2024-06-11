@@ -18,6 +18,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { logout } from '@/lib/server/userActions';
 import { useGlobalContext } from '@/context/GlobalProvider';
+import MobileSidebar from './MobileSidebar';
 
 
 
@@ -51,14 +52,14 @@ const Navbar = () => {
           <Link href='/'>
             <div className="nav-logo">
               <div className="nav-logo-image">
-                <Image src={Logo} alt="Logo" className='rounded-lg' priority/>
+                <Image fill sizes='100' src={Logo} alt="Logo" className='rounded-lg object-cover w-[60px] h-[60px]' priority/>
               </div>
               <span className="nav-logo-text">Dembu Safari</span>
             </div>
           </Link>
           
           <div className="nav-mobile">
-            <div className=''>
+            <div className='flex gap-1'>
                 <button type="button" 
                 className="nav-mobile-search"
                 onClick={() => setMobileNavOpen(prev => !prev)}
@@ -78,10 +79,9 @@ const Navbar = () => {
                     </svg>
                 </button>
             </div>
-            
           </div>
           {mobileNavOpen && (
-            <div className='md:hidden bg-white pb-4'>
+            <div className='md:hidden absolute top-20 right-1 bg-white pb-4'>
                 <div className="relative mx-1 mt-3 md:hidden" onClick={() => setMobileNavOpen(false)}>
                 <div className="mobile-search-icon">
                     <svg className="w-4 h-4 text-success-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -108,6 +108,7 @@ const Navbar = () => {
                     );
                   })}
                 </ul>
+                
                 {loading ? (
                   <div className='nav-loading'>&nbsp; Loading...</div>
                 )

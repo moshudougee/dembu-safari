@@ -17,9 +17,9 @@ const ContentHeader = ({crumbPage, crumbLinks=[], icon, imageurl='', title, subt
                 {imageurl !== '' &&
                     <img src={imageurl} alt='flag' className='rounded w-5 h-auto' />
                 }
-                <span className='font-normal text-[18px]'>{title}</span>
+                <span className='font-light lg:font-normal text-[14px] lg:text-[18px]'>{title}</span>
                 {subtitle !== '' && 
-                <span className='font-normal text-[14px] ms-8'>{subtitle}</span>
+                <span className='font-light lg:font-normal text-[12px] lg:text-[14px] ms-8'>{subtitle}</span>
                 }
             </div>
         </div>

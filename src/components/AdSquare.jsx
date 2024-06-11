@@ -10,7 +10,7 @@ const AdSquare = ({ slot="9551471558" }) => {
       }, [])
   return (
     <ins 
-        className="adsbygoogle"
+        className="adsbygoogle w-[200px] h-[200px]"
         style={{display: "block"}}
         data-ad-client="ca-pub-6856025729636564"
         data-ad-slot={slot}

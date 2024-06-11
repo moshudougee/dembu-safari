@@ -1,12 +1,4 @@
 import React from 'react'
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-  } from "@/components/ui/card"
 import { MapPin } from 'lucide-react'
 import Image from 'next/image'
 
@@ -18,23 +10,23 @@ const DestinationCard = ({ title, description, image, location }) => {
         formatedDesc = description
     }
   return (
-        <Card className="w-full m-0 hover:text-success-1 cursor-pointer">
-            <CardHeader>
-               <CardTitle>{title}</CardTitle>
-              <CardDescription>{formatedDesc} </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="relative h-[320px] w-[350px] rounded border border-safari-1">
+        <div className="flex flex-col rounded-lg border shadow-sm w-full m-0 hover:text-success-1 cursor-pointer">
+            <div className='flex flex-col space-y-1.5 p-4'>
+               <span className='text-xl xl:text-2xl  font-semibold leading-none tracking-tight'>{title}</span>
+              <span className='text-sm text-muted-foreground'>{formatedDesc} </span>
+            </div>
+            <div className='flex justify-center p-1 xl:p-6 pt-0'>
+              <div className="destination-card">
                 <Image src={image} fill sizes='100' alt="Popular" className="rounded object-cover" />
               </div>
-            </CardContent>
-            <CardFooter>
+            </div>
+            <div className='flex items-center p-4 pt-0'>
               <div className="flex gap-2 justify-center items-center">
                 <MapPin />
-                <span className=" font-light italic text-sm">{location}</span>
+                <span className="font-light italic text-sm">{location}</span>
               </div>
-            </CardFooter>
-        </Card>
+            </div>
+        </div>
   )
 }
 

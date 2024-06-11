@@ -22,9 +22,9 @@ const Breadlinks = ({ crumbLinks=[], crumbPage }) => {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             {crumbLinks && crumbLinks.length > 0 ? (
-                crumbLinks.map((link) => {
+                crumbLinks.map((link, i) => {
                 return (
-                    <div key={link.name} className='flex gap-2 justify-center items-center'>
+                    <div key={i} className='flex gap-2 justify-center items-center'>
                         <BreadcrumbItem>
                             <BreadcrumbLink asChild>
                                 <Link href={link.href}>{link.name}</Link>

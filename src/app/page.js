@@ -68,7 +68,7 @@ export default function Home() {
   }, [page])
   return (
     <div className="min-h-screen">
-      <div className="flex flex-col h-auto w-full max-lg:hidden">
+      <div className="hero-main">
         {categoriesLoading ? (
           <CustomLoading />
         ) : categoryError ? (
@@ -76,27 +76,33 @@ export default function Home() {
         ) : (
           <Hero autoSlide={true}>
           {slides.map((slide) => {
+            let formartedIntro = ''
+            if(slide.intro.length > 275) {
+              formartedIntro = slide.intro.substring(0, 275) + '...'
+            } else {
+              formartedIntro = slide.intro
+            }
             const handleExplore = () => {
               router.push(`/categories/${slide.$id}`)
             }
             return (
-              <div key={slide.$id} className="flex">
+              <div key={slide.$id} className="flex justify-center w-full">
               <div className="hero-image">
-                <Image src={slide.image} fill sizes="100" alt="Banner" className="rounded object-cover" priority />
+                <Image src={slide.image} fill sizes="100"  alt="Banner" className="rounded object-cover"/>
               </div>
               <div className="hero-content">
                 <div className="hero-content-title">
-                  <span className="font-lobster font-light text-4xl gradiant-text">{slide.name}</span>
+                  <span className="font-lobster font-light text-2xl xl:text-3xl 2xl:text-4xl gradiant-text">{slide.name}</span>
                 </div>
-                <div className="flex mt-8 pl-6">
-                  <span className="flex font-pinyon text-3xl font-semibold text-success-1 indent-1">
-                    {`.... ${slide.intro}`}
+                <div className="flex xl:mt-8 mt-2 pl-6">
+                  <span className="flex font-pinyon leading-5 text-xl xl:text-2xl 2xl:text-3xl font-semibold text-success-1 indent-1">
+                    {`.... ${formartedIntro}`}
                   </span>
                 </div>
-                <div className="flex justify-center items-center mt-10 pl-6">
+                <div className="flex justify-center items-center 2xl:mt-10 mt-5 pl-6">
                   <Button onClick={handleExplore} className="hero-content-explore">
                     <Telescope />
-                    <span className="font-semibold text-2xl">Explore more...</span>
+                    <span className="font-semibold text-xl">Explore more...</span>
                   </Button>
                 </div>
               </div>
@@ -113,7 +119,7 @@ export default function Home() {
         </div>
       </div>
       <hr className="hr"/>
-      <div className='grid grid-cols-3 h-auto w-full ps-2 my-4'>
+      <div className='card'>
         {isLoading || totalLoading ? (
           <CustomLoading />
         ) : error ? (
@@ -130,7 +136,11 @@ export default function Home() {
               image = defaultUrl
             }
             return (
-            <div key={destination.$id} className='flex w-[380px] h-[500px] mb-2' onClick={viewDestination}>
+            <div 
+              key={destination.$id} 
+              className='card-item' 
+              onClick={viewDestination}
+            >
                 <DestinationCard 
                     title={destination.name}
                     description={destination.intro}

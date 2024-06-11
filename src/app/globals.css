@@ -9,8 +9,8 @@
 
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
-    height: 3px;
-    border-radius: 2px;
+    height: 6px;
+    border-radius: 4px;
   }
   
   .custom-scrollbar::-webkit-scrollbar-track {
@@ -113,7 +113,7 @@
       text-wrap: nowrap;
       display: block;
       width: max-content;
-      height: 80px;
+      height: 40px;
       width: 0;
     }
     @keyframes typing-text {
@@ -131,10 +131,10 @@
       @apply max-w-screen-xl flex flex-wrap items-center justify-between mx-auto
     }
     .nav-logo {
-      @apply w-4/6 md:w-auto flex items-center space-x-3 rtl:space-x-reverse my-[10px]
+      @apply w-auto flex items-center space-x-3 rtl:space-x-reverse my-[10px]
     }
     .nav-logo-image {
-      @apply h-[60px] w-[60px] object-contain rounded-lg
+      @apply relative flex w-[60px] h-[60px] rounded-lg
     }
     .nav-logo-text {
       @apply self-center lg:text-2xl font-semibold whitespace-nowrap text-safari-1 font-lobster
@@ -143,10 +143,10 @@
       @apply flex flex-col w-2/6 md:hidden
     }
     .nav-mobile-search {
-      @apply md:hidden text-amber-50 rounded-sm focus:outline-none focus:ring-2 focus:ring-safari-1  text-sm p-2.5 me-1
+      @apply md:hidden text-success-1 rounded-sm focus:outline-none focus:ring-2 focus:ring-success-1  text-sm p-2.5 me-1
     }
     .nav-mobile-menu-icon {
-      @apply inline-flex items-center p-2 w-10 h-10 justify-center text-sm md:hidden focus:outline-none focus:ring-2  text-safari-2 focus:ring-safari-1 rounded-sm
+      @apply flex items-center p-2 me-1 w-10 h-10 justify-center text-sm md:hidden focus:outline-none focus:ring-2  text-safari-2 focus:ring-safari-1 rounded-sm
     }
     .nav-loading {
       @apply flex gap-1 text-safari-1 justify-center items-center ms-2
@@ -167,7 +167,7 @@
       @apply hidden lg:flex
     }
     .navbar-menu-text {
-      @apply font-semibold xl:text-[16px]
+      @apply text-sm font-normal xl:font-semibold xl:text-[16px]
     }
     .navbar-search {
       @apply relative hidden md:flex ms-2
@@ -208,20 +208,32 @@
     .mobile-menubar {
       @apply border-0 rounded-lg text-safari-2 focus:text-safari-1
     }
+    .content-main {
+      @apply flex flex-col justify-center border-safari-2 rounded sm:min-w-[350px] md:min-w-[700px] lg:min-w-[610px] lg:mx-[180px];
+      @apply xl:min-w-[860px] 2xl:min-w-[1100px] 3xl:min-w-[1460px];
+    }
+    .hero-main {
+      @apply flex flex-col justify-center w-full h-full border max-lg:hidden;
+      @apply min-w-[600px] min-h-[337px] max-w-[800px] max-h-[449px] xl:min-w-[860px] xl:min-h-[483px] xl:max-w-[1115px] xl:max-h-[626px];
+      @apply 2xl:min-w-[1120px] 2xl:min-h-[629px] 3xl:min-w-[1460px] 3xl:min-h-[820px];
+    }
     .hero-image {
-      @apply relative flex justify-center items-center border-safari-2  rounded w-[1150px] h-[646px] m-1 mt-1
+      @apply relative flex justify-center border-safari-2  rounded w-full h-full m-1 mt-1;
+      @apply w-[800px] h-[449px] xl:w-[1115px] xl:h-[626px] 2xl:w-[1150px] 2xl:h-[646px];
+      @apply 3xl:w-[1460px] 3xl:h-[820px];
     }
     .hero-content {
-      @apply flex flex-col absolute rounded w-[1000px] h-[400px] bg-safari-6 ml-[80px] mt-20
+      @apply flex flex-col absolute rounded w-[520px] h-[230px] xl:w-[750px] xl:h-[350px] bg-safari-6 xl:ml-[50px] ml-10 mt-20;
+      @apply 2xl:w-[1000px] 2xl:h-[400px] 2xl:ml-[80px];
     }
     .hero-content-title {
-      @apply flex justify-center items-center mt-5 text-safari-2
+      @apply flex justify-center items-center xl:mt-5 mt-3 text-safari-2
     }
     .hero-content-explore {
       @apply bg-safari-2 text-banner hover:bg-banner hover:text-safari-2 rounded p-1 gap-2 flex relative  z-10
     }
     .sidebar {
-      @apply fixed flex border-safari-2 rounded w-[210px] left-0 h-screen
+      @apply hidden lg:fixed lg:flex border-safari-2 rounded lg:w-[200px] xl:w-[210px] 3xl:w-[250px] left-0 h-screen
     }
     .sidebar-header {
       @apply flex w-[210px] h-10 bg-safari-4 p-1
@@ -237,6 +249,9 @@
     }
     .sidebar-menubar {
       @apply ps-0 border-0 shadow
+    }
+    .rightbar {
+      @apply hidden lg:fixed lg:flex right-0 border-safari-2 rounded w-full lg:w-[200px] xl:w-[210px] 3xl:w-[250px]
     }
     .hr {
       @apply flex w-auto mx-10 border rounded-md
@@ -296,40 +311,69 @@
   .form-link {
     @apply text-14 cursor-pointer font-medium text-success-1;
   }
-  .group:hover .hover-text {
+  .group:hover .hover-text .mobilesidebar-text {
     @apply opacity-100 visible;
   }
   .hover-text {
     @apply absolute flex items-center justify-center text-lg font-semibold opacity-0 invisible;
     @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md right-4;
   }
+  .mobilesidebar-menu {
+    @apply flex gap-1 py-1 justify-center items-center text-success-1 hover:text-safari-2 rounded cursor-pointer
+  }
+  .mobilesidebar-text {
+    @apply absolute flex items-center justify-center text-lg font-semibold opacity-0 invisible;
+    @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md left-2;
+  }
   .category-card {
-    @apply flex flex-col justify-center items-center w-full
+    @apply flex flex-col w-full justify-center
   }
   .category-card-main {
-    @apply flex flex-col xl:flex-row gap-2 shadow-md rounded-md w-full xl:w-[1000px] xl:h-[420px] m-2 p-2
+    @apply flex flex-col justify-center items-center 2xl:flex-row gap-1 shadow-md rounded-md w-full m-2 px-2 py-3
   }
   .category-card-image {
-    @apply flex relative rounded-md border w-[200px] h-[112px] md:w-[400px] md:h-[225px] xl:min-w-[700px] xl:h-[393px]
+    @apply flex relative rounded-md border w-[320px] h-[180px] md:w-[690px] md:h-[388px] lg:w-[595px] lg:h-[334px];
+    @apply xl:w-[800px] xl:h-[449px] 2xl:w-[700px] 2xl:h-[393px] 3xl:w-[1100px] 3xl:h-[618px];
   }
   .category-card-side {
-    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-4 py-4
+    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2 xl:mt-4 xl:py-4 w-[350px]
   }
   .county-card-side {
-    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2
+    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2 w-[350px]
+  }
+  .tabs {
+    @apply flex flex-col items-center w-full min-h-[600px] m-2
+  }
+  .card {
+    @apply flex flex-col md:grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 h-auto w-full ps-2 my-4
+  }
+  .card-item {
+    @apply flex w-[352px] h-[500px] lg:w-[308px] xl:w-[428px] xl:h-[570px] 2xl:w-[372px] 3xl:w-[375px] mb-2
+  }
+  .destination-card {
+    @apply relative flex w-[350px] h-[320px] md:w-[308px] md:h-[282px] xl:w-[420px] xl:h-[384px] rounded border border-safari-1;
+    @apply 2xl:w-[370px] 2xl:h-[338px];
   }
   .destination-card-main {
-    @apply flex flex-col gap-2 justify-center shadow-md rounded-md w-full xl:w-[1000px] xl:h-[800px] m-2 p-2
+    @apply flex flex-col gap-2 justify-center items-center shadow-md rounded-md w-full m-2 p-2
   }
   .destination-card-image {
-    @apply flex relative rounded-md border w-[200px] h-[200px] md:w-[400px] md:h-[400px] xl:w-[600px] xl:h-[600px]
+    @apply flex relative rounded-md border w-[350px] h-[350px] md:w-[600px] md:h-[600px] lg:w-[595px] lg:h-[595px];
+    @apply xl:w-[820px] xl:h-[820px] 2xl:w-[700px] 2xl:h-[700px] 3xl:w-[1000px] 3xl:h-[1000px]
+  }
+  .destination-horizontal {
+    @apply grid grid-flow-col justify-center items-center w-full overflow-x-auto custom-scrollbar gap-1 shadow rounded mx-2 my-2 p-2
+  }
+  .destination-horizontal-image {
+    @apply relative rounded w-20 h-20 md:w-24 md:h-24 xl:w-[120px] xl:h-[120px] 2xl:w-[150px] 2xl:h-[150px] 3xl:w-[225px] 3xl:h-[225px]
   }
   .upload-image {
     @apply flex flex-col items-center justify-center gap-1 rounded-sm bg-transparent shadow-lg border;
     @apply w-20 h-20 cursor-pointer text-center text-sm text-success-1 hover:text-safari-2; 
   }
   .card-container {
-    @apply flex flex-col justify-center items-center w-full max-w-[1000px] px-6 mx-10 my-10
+    @apply flex flex-col justify-center max-w-[700px] md:max-w-[1000px]  lg:my-10 px-2 mx-2 xl:mx-4 my-4 border;
+    @apply lg:max-w-[850px] xl:max-w-[1100px] 2xl:max-w-[1450px];
   }
   .about {
     @apply flex flex-col gap-3 shadow max-w-[1000px] justify-center items-center px-10 py-5 mx-10
@@ -394,6 +438,7 @@
   .ad-square {
     @apply flex w-full h-[200px] border my-1
   }
+  
   .footer {
     @apply flex flex-col w-full min-h-40 mt-2
   }

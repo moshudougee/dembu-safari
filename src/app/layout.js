@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import Adbar from "@/components/Adbar";
 import GlobalProvider from "@/context/GlobalProvider";
 import { Toaster } from "react-hot-toast";
+import MobileSidebar from "@/components/MobileSidebar";
 
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
@@ -43,18 +44,21 @@ export default function RootLayout({ children }) {
         <GlobalProvider>
           <Toaster />
           <Navbar />
-          <div className="flex mt-20 mx-8">
+          <div className="flex justify-center items-start mt-20 mx-8">
             <div className="sidebar">
               <Sidebar />
             </div>
-            <div className="flex flex-col border-safari-2 rounded w-full xl:min-w-[1000px] mx-[180px]">
+            <div className="fixed left-0 top-48 w-10 z-10 lg:hidden">
+              <MobileSidebar />
+            </div>
+            <div className="content-main">
               {children}
             </div>
-            <div className="fixed flex right-0 border-safari-2 rounded w-[210px]">
+            <div className="rightbar">
               <Adbar />
             </div>
           </div>
-          <div className="flex mx-[212px] mt-4 border rounded">
+          <div className="flex lg:mx-[212px] mt-4 shadow rounded">
               <Footer />
           </div>
         </GlobalProvider>

@@ -21,18 +21,18 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     const defaultUrl = defaultAvatar
     //extract fileId
     const extractFileId = (url) => {
-        const match = url.match(/\/files\/([^/]+)/);
+        const match = url?.match(/\/files\/([^/]+)/);
         return match ? match[1] : null;
     }
-    const fileId = extractFileId(data.image)
+    const fileId = extractFileId(data?.image)
     const defaultId = extractFileId(defaultUrl)
     const handleEdit = () => {
-        router.push(`/admin/categories/edit?id=${data.$id}&fileId=${fileId}`)
+        router.push(`/admin/categories/edit?id=${data?.$id}&fileId=${fileId}`)
     }
     const handleDelete = () => {
         swal.fire({
             title: 'Are you sure?',
-            text: `Do you want to delete ${data.name}?`,
+            text: `Do you want to delete ${data?.name}?`,
             showCancelButton: true,
             cancelButtonText: 'Cancel',
             confirmButtonText: 'Yes, Delete!',
@@ -41,7 +41,7 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
         }).then(async result => {
             if(result.isConfirmed) {
                 setIsLoading(true)
-                const res = await deleteCategory(data.$id)
+                const res = await deleteCategory(data?.$id)
                 if(res) {
                     const hasFile = await checkImage(fileId)
                     if(hasFile && defaultId !== fileId) {
@@ -71,11 +71,11 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     <div className='category-card'>
         <div className='category-card-main'>
             <div className='category-card-image'>
-                <Image src={data.image} alt='Category' fill sizes='100' className='rounded-md' />
+                <Image src={data?.image} alt='Category' fill sizes='100' className='rounded-md' priority />
             </div>
-            <div className='flex flex-col w-full mt-10'>
+            <div className='flex flex-col w-full 2xl:w-1/3 items-center mt-5 xl:mt-10'>
                 <Link
-                    href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data.name}&categoryId=${data.$id}`} 
+                    href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data?.name}&categoryId=${data?.$id}`} 
                     className='category-card-side'
                 >
                     <Palmtree />
@@ -112,9 +112,11 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                 }
             </div>
         </div>
-        <hr className="hr"/>
-        <div className='flex justify-center items-center m-1'>
-            <Tabs defaultValue="details" className="flex flex-col w-[1000px] min-h-[600px] rounded-md shadow-md p-4 mx-10">
+        
+        <div className='tabs'>
+            <Tabs 
+            defaultValue="details" 
+            className='flex flex-col w-full  rounded-md shadow-md p-4 xl:mx-10'>
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 
@@ -137,13 +139,13 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                 </TabsList>
                 <TabsContent value="details">
                     <p className='indent-12'>
-                        {data.intro}
+                        {data?.intro}
                     </p>
                     <p className='indent-12'>
-                        {data.details}
+                        {data?.details}
                     </p>
                     <p className='indent-12'>
-                        {data.conclusion}
+                        {data?.conclusion}
                     </p>
                 </TabsContent>
                 <TabsContent value="accommodation">
@@ -151,11 +153,11 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                         <p className='indent-12'>
                             {role === 'ADMIN' ? (
                                 <>
-                                Accommodation services relating <em>{data.name}</em> as advertised with us.
+                                Accommodation services relating <em>{data?.name}</em> as advertised with us.
                                 </>
                             ) : (
                                 <>
-                                If you offer Accommodation services relating to <em>{data.name}</em> kindly advertise with us here.
+                                If you offer Accommodation services relating to <em>{data?.name}</em> kindly advertise with us here.
                                 </>
                             )}
                         </p>
@@ -180,11 +182,11 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                     <p className='indent-12'>
                         {role === 'ADMIN' ? (
                             <>
-                            Tours & Safari services relating <em>{data.name}</em> as advertised with us.
+                            Tours & Safari services relating <em>{data?.name}</em> as advertised with us.
                             </>
                         ) : (
                             <>
-                            If you offer Tours & Safari services relating to <em>{data.name}</em> kindly advertise with us here.
+                            If you offer Tours & Safari services relating to <em>{data?.name}</em> kindly advertise with us here.
                             </>
                         )}
                     </p>

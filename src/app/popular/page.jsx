@@ -70,7 +70,7 @@ const Popular = () => {
         icon={<GiElephant size={24} />}
         title={crumbPage}
       />
-      <div className='grid grid-cols-3 h-auto w-full ps-2 my-4'>
+      <div className='card'>
         {isLoading || totalLoading ? (
           <CustomLoading />
         ) : error ? (
@@ -87,7 +87,7 @@ const Popular = () => {
               image = defaultUrl
             }
             return (
-            <div key={destination.$id} className='flex w-[380px] h-[500px] mb-2' onClick={viewDestination}>
+            <div key={destination.$id} className='card-item' onClick={viewDestination}>
                 <DestinationCard 
                     title={destination.name}
                     description={destination.intro}

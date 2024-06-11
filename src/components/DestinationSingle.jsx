@@ -15,6 +15,7 @@ import { defaultAvatar } from '@/lib/utils'
 import Link from 'next/link'
 import AdsHorizontal from './AdsHorizontal'
 
+
 const DestinationSingle = ({ data, role="CLIENT", swal }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [activeImage, setActiveImage] = useState(data?.images[0])
@@ -77,13 +78,14 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
             }
         })
     }
+    
     if (isLoading) {
         return <CustomLoading />
     }
   return (
     <div className='category-card'>
         <div className='destination-card-main'>
-            <div className='flex flex-col xl:flex-row xl:gap-3 justify-center'>
+            <div className='flex flex-col 2xl:flex-row 2xl:gap-3 justify-center items-center'>
                 <div className='destination-card-image'>
                     {data.images.length > 0 ? (
                         <Image src={activeImage} alt='Destination' fill sizes='100' className='rounded-md object-cover' priority />
@@ -92,7 +94,7 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                     )}
                     
                 </div>
-                <div className='flex flex-col w-full xl:w-[350px] mt-8'>
+                <div className='flex flex-col justify-center items-center w-[350px] 2xl:w-1/3 mt-8'>
                     <Link href={`/counties/${data?.countyId.$id}`} className='county-card-side'>
                         <Locate />
                         <span className='font-normal'>{data?.countyId.name}</span>
@@ -130,11 +132,12 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                     }
                 </div>
             </div>
-            <div className='flex justify-center items-center w-auto gap-1 shadow rounded my-2 p-2'>
+            <div className='flex justify-center items-center w-full'>
+            <div className='destination-horizontal'>
                 {data.images.length > 0 && 
                     data.images.map((image, i) => {
                         return(
-                            <div key={i} className='relative rounded w-[150px] h-[150px]'>
+                            <div key={i} className='destination-horizontal-image'>
                                 <Image 
                                     src={image} alt='Destination' 
                                     fill 
@@ -147,10 +150,11 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                     })
                 }
             </div>
+            </div>
         </div>
         <hr className="hr"/>
-        <div className='flex justify-center items-center m-1'>
-        <Tabs defaultValue="details" className="flex flex-col w-[1000px] min-h-[600px] rounded-md shadow-md p-4 mx-10">
+        <div className='tabs'>
+        <Tabs defaultValue="details" className="flex flex-col w-full rounded-md shadow-md 2xl:p-10 p-5 mx-10">
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 
