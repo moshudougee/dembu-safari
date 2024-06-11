@@ -436,7 +436,7 @@
     @apply flex w-full h-44 border my-2
   }
   .ad-square {
-    @apply grid w-[200px] max-h-[200px] border my-1
+    @apply grid w-[210px] max-h-[210px] border my-1
   }
   
   .footer {
