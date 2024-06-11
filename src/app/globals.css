@@ -372,7 +372,7 @@
     @apply w-20 h-20 cursor-pointer text-center text-sm text-success-1 hover:text-safari-2; 
   }
   .card-container {
-    @apply flex flex-col justify-center max-w-[700px] md:max-w-[1000px]  lg:my-10 px-2 mx-2 xl:mx-4 my-4 border;
+    @apply flex flex-col justify-center max-w-[700px] md:max-w-[1000px]  lg:my-10 px-2 mx-2 xl:mx-4 my-4;
     @apply lg:max-w-[850px] xl:max-w-[1100px] 2xl:max-w-[1450px];
   }
   .about {
@@ -436,7 +436,7 @@
     @apply flex w-full h-44 border my-2
   }
   .ad-square {
-    @apply flex w-full h-[200px] border my-1
+    @apply grid w-[200px] max-h-[200px] border my-1
   }
   
   .footer {
