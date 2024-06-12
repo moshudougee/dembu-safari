@@ -13,8 +13,7 @@ const AdSquare = ({ slot="9551471558" }) => {
         className="adsbygoogle gog-square"
         style={{
           display: "block",
-          width: "210px",
-          maxHeight: "210px"  
+          overflow: "hidden",
         }}
         data-ad-client="ca-pub-6856025729636564"
         data-ad-slot={slot}

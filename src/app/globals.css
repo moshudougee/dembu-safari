@@ -436,10 +436,10 @@
     @apply flex w-full h-44 border my-2
   }
   .ad-square {
-    @apply flex w-[210px] max-h-[210px] my-1
+    @apply flex w-full max-h-[210px] my-1
   }
   .gog-square {
-    @apply flex w-[210px] max-h-[210px] border shadow-xl
+    @apply flex w-full max-h-[210px] shadow-xl
   }
   
   .footer {
