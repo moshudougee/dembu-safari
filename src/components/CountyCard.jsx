@@ -136,7 +136,7 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
         </div>
         <hr className="hr"/>
         <div className='tabs'>
-            <Tabs defaultValue="details" className="flex flex-col w-full rounded-md shadow-md p-4 mx-10">
+            <Tabs defaultValue="details" className="flex flex-col w-[400px] md:w-full rounded-md shadow-md p-5 xl:mx-10">
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 

@@ -136,7 +136,7 @@ const AuthForm = ({ type }) => {
                 <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8 xl:min-w-[400px] my-10'>
                     {type === 'Register' && (
                         <>
-                            <div className='flex gap-2 items-center'>
+                            <div className='flex gap-2 max-md:justify-center items-center'>
                                 
                                     <div className='relative w-[102px] h-[102px] rounded-full border-2 border-success-1'>
                                         <Image fill sizes='100' src={imageUrl || prof} alt='Profile' className='rounded-full w-[100px] h-[100px]' priority />
@@ -158,7 +158,7 @@ const AuthForm = ({ type }) => {
                                     <input type="file" onChange={uploadImage} className="hidden"/>
                                 </label>
                             </div>
-                            <div className='flex gap-4'>
+                            <div className='flex flex-col md:flex-row gap-4'>
                                 <CustomInput control={form.control} name='firstName' label="First Name" placeholder='Enter your first name' id='fname' />
                                 <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your last name' id='lname' />
                             </div>

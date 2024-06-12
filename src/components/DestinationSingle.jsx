@@ -155,7 +155,7 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
         </div>
         <hr className="hr"/>
         <div className='tabs'>
-        <Tabs defaultValue="details" className="flex flex-col w-full rounded-md shadow-md 2xl:p-10 p-5 mx-10">
+        <Tabs defaultValue="details" className="flex flex-col w-full rounded-md shadow-md p-20 md:p-10 xl:mx-10 ml-28 md:ml-5">
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 

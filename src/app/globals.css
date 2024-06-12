@@ -209,7 +209,7 @@
       @apply border-0 rounded-lg text-safari-2 focus:text-safari-1
     }
     .content-main {
-      @apply flex flex-col justify-center border-safari-2 rounded sm:min-w-[350px] md:min-w-[700px] lg:min-w-[610px] lg:mx-[180px];
+      @apply flex flex-col justify-center border-safari-2 rounded  md:min-w-[700px] lg:min-w-[610px] lg:mx-[180px];
       @apply xl:min-w-[860px] 2xl:min-w-[1100px] 3xl:min-w-[1460px];
     }
     .hero-main {
@@ -260,7 +260,7 @@
       @apply flex xl:w-[800px] border rounded-md my-1
     }
     .breadcrumb {
-      @apply flex w-full m-2 ps-4
+      @apply hidden md:flex w-full m-2 ps-4
     }
     .pagination {
       @apply flex flex-col justify-center items-center w-full
@@ -286,10 +286,10 @@
     }
      /* Auth Form */
   .auth-form {
-    @apply flex min-h-[500px] w-full max-w-[420px] flex-col justify-center gap-5 md:gap-8;
+    @apply flex min-h-[500px] w-full max-w-[420px] flex-col justify-center max-md:items-center gap-3 md:gap-8;
   }
   .wide-form {
-    @apply flex min-h-[500px] w-full max-w-[600px] flex-col justify-center gap-5 md:gap-8;
+    @apply flex min-h-[500px] w-full max-w-[600px] flex-col justify-center max-md:items-center gap-3 md:gap-8;
   }
 
   .form-item {
@@ -342,7 +342,7 @@
     @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2 w-[350px]
   }
   .tabs {
-    @apply flex flex-col items-center w-full min-h-[600px] m-2
+    @apply flex flex-col justify-center items-center w-full min-h-[600px] m-2 left-1 p-10
   }
   .card {
     @apply flex flex-col md:grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 h-auto w-full ps-2 my-4
@@ -362,17 +362,17 @@
     @apply xl:w-[820px] xl:h-[820px] 2xl:w-[700px] 2xl:h-[700px] 3xl:w-[1000px] 3xl:h-[1000px]
   }
   .destination-horizontal {
-    @apply grid grid-flow-col justify-center items-center w-full overflow-x-auto custom-scrollbar gap-1 shadow rounded mx-2 my-2 p-2
+    @apply grid grid-flow-col justify-center items-center w-[365px] md:w-full overflow-x-auto custom-scrollbar gap-1 shadow rounded mx-2 my-2 p-2
   }
   .destination-horizontal-image {
-    @apply relative rounded w-20 h-20 md:w-24 md:h-24 xl:w-[120px] xl:h-[120px] 2xl:w-[150px] 2xl:h-[150px] 3xl:w-[225px] 3xl:h-[225px]
+    @apply relative rounded w-16 h-16 md:w-24 md:h-24 xl:w-[120px] xl:h-[120px] 2xl:w-[150px] 2xl:h-[150px] 3xl:w-[225px] 3xl:h-[225px]
   }
   .upload-image {
     @apply flex flex-col items-center justify-center gap-1 rounded-sm bg-transparent shadow-lg border;
     @apply w-20 h-20 cursor-pointer text-center text-sm text-success-1 hover:text-safari-2; 
   }
   .card-container {
-    @apply flex flex-col justify-center max-w-[700px] md:max-w-[1000px]  lg:my-10 px-2 mx-2 xl:mx-4 my-4;
+    @apply flex flex-col justify-center items-center max-w-[700px] md:max-w-[1000px]  lg:my-10 px-2 mx-2 xl:mx-4 my-4;
     @apply lg:max-w-[850px] xl:max-w-[1100px] 2xl:max-w-[1450px];
   }
   .about {

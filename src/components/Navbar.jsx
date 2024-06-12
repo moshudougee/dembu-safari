@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { logout } from '@/lib/server/userActions';
 import { useGlobalContext } from '@/context/GlobalProvider';
-import MobileSidebar from './MobileSidebar';
+
 
 
 
@@ -167,14 +167,14 @@ const Navbar = () => {
                 ) : (
                   <>
                     <div className='flex gap-1 justify-start ps-4 ms-3 text-success-1 bg-white'>
-                      <Link href='/login' className='flex gap-1'>
+                      <Link href='/login' className='flex gap-1' onClick={() => setMobileNavOpen(false)}>
                         <LogIn />
                         <span className='mobile-menu-text'>Login</span>
                       </Link>
                     </div>
                     |
                     <div className='flex gap-1 justify-start ps-4 ms-3 text-success-1 bg-white'>
-                      <Link href='/register' className='flex gap-1'>
+                      <Link href='/register' className='flex gap-1' onClick={() => setMobileNavOpen(false)}>
                         <UserPlus />
                         <span className='mobile-menu-text'>Register</span>
                       </Link>
