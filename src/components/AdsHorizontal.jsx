@@ -12,13 +12,14 @@ const AdsHorizontal = ({ slot="5474928500" }) => {
   
   return (
     <ins 
-      className="adsbygoogle w-full h-44"
+      className="adsbygoogle w-full h-44 shadow-xl"
       style={{display: "block"}}
       data-ad-client="ca-pub-6856025729636564"
       data-ad-slot= {slot}
       data-ad-format="auto"
-      data-full-width-responsive="true">
-    </ins>
+      data-full-width-responsive="true" 
+    />
+    
   )
 }
 

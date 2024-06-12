@@ -14,6 +14,7 @@ import CustomLoading from './CustomLoading'
 import { defaultAvatar } from '@/lib/utils'
 import Link from 'next/link'
 import AdsHorizontal from './AdsHorizontal'
+import AdSquare from './AdSquare'
 
 
 const DestinationSingle = ({ data, role="CLIENT", swal }) => {
@@ -227,17 +228,30 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                 </TabsContent>
                 <TabsContent value="tours">
                     <div className='flex flex-col justify-center items-center'>
-                    <p className='indent-12'>
-                        {role === 'ADMIN' ? (
-                            <>
-                            Tours & Safari services located around <em>{data.name}</em> as advertised with us.
-                            </>
-                        ) : (
-                            <>
-                            If you offer Tours & Safari services located around <em>{data.name}</em> kindly advertise with us here.
-                            </>
-                        )}
-                    </p>
+                        <p className='indent-12'>
+                            {role === 'ADMIN' ? (
+                                <>
+                                Tours & Safari services located around <em>{data.name}</em> as advertised with us.
+                                </>
+                            ) : (
+                                <>
+                                If you offer Tours & Safari services located around <em>{data.name}</em> kindly advertise with us here.
+                                </>
+                            )}
+                        </p>
+                        <hr className="hr-ad-horizontal"/>
+                        <div className='ad-horizontal'>
+                            <AdsHorizontal slot='8250385212' />
+                        </div>
+                        <hr className="hr-ad-horizontal"/>
+                        <div className='ad-horizontal'>
+                            <AdsHorizontal slot='2318282129' />
+                        </div>
+                        <hr className="hr-ad-horizontal"/>
+                        <div className='ad-horizontal'>
+                            <AdsHorizontal slot='4474791731' />
+                        </div>
+                        <hr className="hr-ad-horizontal"/>
                     </div>
                     
                 </TabsContent>

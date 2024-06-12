@@ -19,8 +19,8 @@ const AdSquare = ({ slot="9551471558" }) => {
         data-ad-slot={slot}
         data-ad-format="auto"
         data-full-width-responsive="true"
-     >
-    </ins>
+     />
+    
   )
 }
 

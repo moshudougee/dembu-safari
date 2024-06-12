@@ -8,7 +8,6 @@ import Adbar from "@/components/Adbar";
 import GlobalProvider from "@/context/GlobalProvider";
 import { Toaster } from "react-hot-toast";
 import MobileSidebar from "@/components/MobileSidebar";
-import Script from "next/script";
 import AdSense from "@/components/AdSense";
 
 
@@ -34,7 +33,13 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning={true} className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <AdSense />
+        <script
+         async 
+         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6856025729636564"
+         crossOrigin="anonymous"
+         strategy="lazyOnload"
+        >
+        </script>
       </head>
       <body className={`${inter.variable} ${pinyon.variable} ${lobster.variable}`}>
         <GlobalProvider>

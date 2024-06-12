@@ -433,13 +433,13 @@
     @apply flex gap-2 bg-transparent text-red-700
   }
   .ad-horizontal {
-    @apply flex w-full h-44 border my-2
+    @apply flex w-full h-44 my-2
   }
   .ad-square {
-    @apply flex w-full max-h-[210px] my-1
+    @apply flex w-52 h-auto my-1
   }
   .gog-square {
-    @apply flex w-full max-h-[210px] shadow-xl
+    @apply flex w-52 h-full shadow-xl
   }
   
   .footer {

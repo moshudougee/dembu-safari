@@ -167,14 +167,9 @@ const Sidebar = () => {
         {loggedIn && user?.role === 'ADMIN' ? (
           <AdminSidebar />
         ) : (
-          <>
-            <div className='ad-square'>
+          <div className='ad-square'>
               <AdSquare slot='8799929998' />
-            </div>
-            <div className='ad-square'>
-              <AdSquare slot='4474791731' />
-            </div>
-          </>
+          </div>
         ) 
           
         }
