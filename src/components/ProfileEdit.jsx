@@ -135,7 +135,7 @@ const ProfileEdit = ({ user, fileId }) => {
                             <input type="file" onChange={uploadImage} className="hidden"/>
                         </label>
                      </div>
-                    <div className='flex gap-4'>
+                    <div className='flex flex-col md:flex-row gap-4'>
                         <CustomInput control={form.control} name='firstName' label="First Name" placeholder='Enter your first name' id='fname' />
                         <CustomInput control={form.control} name='lastName' label="Last Name" placeholder='Enter your last name' id='lname' />
                     </div>
