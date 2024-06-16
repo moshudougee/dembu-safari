@@ -1,50 +1,46 @@
-'use client'
-import AdsHorizontal from '@/components/AdsHorizontal'
-import ContentHeader from '@/components/ContentHeader'
-import CustomError from '@/components/CustomError'
-import CustomLoading from '@/components/CustomLoading'
-import DestinationSingle from '@/components/DestinationSingle'
-import useDestination from '@/hooks/useDestination'
-import { Telescope } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
+import DestinationSingleComp from '@/components/DestinationSingleComp'
+import { getDestination } from '@/lib/server/destinationActions'
 import React from 'react'
 
-const SingleDestination = ({ params }) => {
+export const generateMetadata = async ({ params, searchParams }) => {
+  const { id } = params
+  const name = searchParams.name
+  const destination = await getDestination(id)
+  if(!destination) {
+    return
+  }
+  return {
+        title: destination.name,
+        description: destination.intro,
+        openGraph: {
+            title: destination.name,
+            description: destination.intro,
+            type: "article",
+            locale: "en_US",
+            url: `${process.env.NEXT_PUBLIC_SITE_URL}/destinations/${id}?name=${name}`,
+            siteName: "Dembu Safari",
+            images: [
+              {
+                url: destination.images[0],
+                with: 600,
+                height: 600,
+              }
+              
+            ],
+        },
+  }
+}
+
+const SingleDestination = ({ params, searchParams }) => {
     const { id } = params
-    const myParams = useSearchParams()
-    const name = myParams.get('name')
-    const { data, error, isLoading } = useDestination(id)
-    let crumbLinks = null
-    if (name === 'county') {
-        crumbLinks = [ {name: data?.countyId.name, href: `/counties/${data?.countyId.$id}`} ]
-    }else {
-        crumbLinks = [ {name: data?.categoryId.name, href: `/categories/${data?.categoryId.$id}`} ]
-    }
-    const destinationName = data?.name || 'Destination Name'
-  
+    const name = searchParams.name
+    
   return (
     <div className='min-h-screen'>
-        <ContentHeader 
-            crumbPage={destinationName}
-            crumbLinks={crumbLinks}
-            icon={<Telescope />}
-            title={destinationName}
-            subtitle='Destination details'
+        <DestinationSingleComp 
+          id={id}
+          name={name}
         />
-        <div className='card-container'>
-          {isLoading ? (
-            <CustomLoading />
-          ) : error ? (
-            <CustomError />
-          ) : (
-            <DestinationSingle 
-              data={data}
-            />
-          )}
-        </div>
-        <hr className="hr"/>
-            <AdsHorizontal />
-        <hr className="hr"/>
     </div>
   )
 }

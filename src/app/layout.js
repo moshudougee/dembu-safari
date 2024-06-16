@@ -24,8 +24,20 @@ const pinyon = Pinyon_Script({
 });
 
 export const metadata = {
-  title: "Dembu Safari",
-  description: "The Home of Kenyan tourist attractions and destinations in all 47 counties",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL),
+  title: {
+    default: "Dembu Safari - The Home of Kenyan tourist attractions and destinations in all 47 counties",
+    template: '%s | Dembu Safari - The Home of Kenyan tourist attractions and destinations in all 47 counties'
+  },
+  description: "Whether you're seeking the thrill of a safari adventure, the serenity of pristine beaches, or the cultural richness of historical sites, Dembu Safari is here to help you discover the best that Kenya has to offer.",
+  openGraph: {
+    title: "Dembu Safari - The Home of Kenyan tourist attractions and destinations in all 47 counties",
+    description: "Whether you're seeking the thrill of a safari adventure, the serenity of pristine beaches, or the cultural richness of historical sites, Dembu Safari is here to help you discover the best that Kenya has to offer.",
+    type: "website",
+    locale: "en_US",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    siteName: "Dembu Safari"
+  },
 };
  
 export default function RootLayout({ children }) {

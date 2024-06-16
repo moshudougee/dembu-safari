@@ -1,164 +1,68 @@
-'use client'
-import AdsHorizontal from '@/components/AdsHorizontal'
-import ContentHeader from '@/components/ContentHeader'
-import CustomError from '@/components/CustomError'
-import CustomLoading from '@/components/CustomLoading'
-import DestinationCard from '@/components/DestinationCard'
-import { countCategoryDestinations, countCountyDestinations, getCategoryDestinations, getCountyDestinations } from '@/lib/server/destinationActions'
-import { defaultSquareAvatar } from '@/lib/utils'
-import { Palmtree } from 'lucide-react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import DestinationsComponent from '@/components/DestinationsComponent'
+import { getCategory } from '@/lib/server/categoryActions';
+import { getCounty } from '@/lib/server/countyActions';
+import React from 'react'
 
-const Destinations = () => {
-  const params = useSearchParams()
-  const name = params.get('name')
-  const [data, setData] = useState(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [page, setPage] = useState(0)
-  const [total, setTotal] = useState(null)
-  const [totalLoading, setTotalLoading] = useState(false)
-  const router = useRouter()
-  const defaultUrl = defaultSquareAvatar
-  let countyId, categoryId, crumbPage = ''
-  let crumbLinks = null
-  if (params.get('countyId')) {
-    countyId = params.get('countyId')
+export const generateMetadata = async ({ searchParams }) => {
+  const name = searchParams.name
+  let countyId, categoryId, pathDetails = ''
+  let county, category = null
+  if (searchParams.countyId) {
+    countyId = searchParams.countyId
+    county = await getCounty(countyId)
+    pathDetails = `name=${name}&countyId=${countyId}`
   }
-  if (params.get('categoryId')) {
-    categoryId = params.get('categoryId')
+  if (searchParams.categoryId) {
+    categoryId = searchParams.categoryId
+    category = await getCategory(categoryId)
+    pathDetails = `name=${name}&categoryId=${categoryId}`
   }
-  if (countyId !== undefined && countyId !== '') {
-    crumbPage = `${name} Destinations` || 'County Destinations'
-    crumbLinks = [ {name: name, href: `/counties/${countyId}`} ]
-  } else if (categoryId !== undefined && categoryId !== '') {
-    crumbPage = `${name} Destinations` || 'Category Destinations'
-    crumbLinks = [ {name: name, href: `/categories/${categoryId}`} ]
-  } 
+  let image = ''
+  if(county !== null) {
+    image = county?.image
+  } else if(category !== null) {
+    image = category?.image
+  }
+    return {
+      title: `${name} Tourist Destinations`,
+      description: `${name} tourist attractions and destinations`,
+      openGraph: {
+        title: `${name} Tourist Destinations`,
+        description: `${name} tourist attractions and destinations`,
+        type: "article",
+        locale: "en_US",
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}/destinations?${pathDetails}`,
+        siteName: "Dembu Safari",
+        images: [
+          {
+            url: image,
+            with: 595,
+            height: 334,
+          }
+        ],
+    },
+    }
+}
 
-  console.log(countyId)
-  console.log(categoryId)
-  useEffect(() => {
-    const fetchCountyTotal = async () => {
-      setTotalLoading(true)
-      try {
-        const res = await countCountyDestinations(countyId)
-        if (res) {
-          setTotal(res)
-        }
-      } catch (error) {
-        setError('Error fetching Total is '+error)
-      } finally {
-        setTotalLoading(false)
-      }
-    }
-    const fetchCategoryTotal = async () => {
-      setTotalLoading(true)
-      try {
-        const res = await countCategoryDestinations(categoryId)
-        if (res) {
-          setTotal(res)
-        }
-      } catch (error) {
-        setError('Error fetching Total is '+error)
-      } finally {
-        setTotalLoading(false)
-      }
-    }
-    if (countyId && countyId !== '') {
-      fetchCountyTotal()
-    } else if (categoryId && categoryId !== '') {
-      fetchCategoryTotal()
-    }
-  }, [])
-  const limit = 6
-  let totalPages = 0
-  if(total && total > limit) {
-    totalPages = Math.ceil(total / limit)
+const Destinations = ({ searchParams }) => {
+  //console.log('Params are '+searchParams.name)
+  const name = searchParams.name
+  let countyId, categoryId = ''
+  if (searchParams.countyId) {
+    countyId = searchParams.countyId
+   }
+  if (searchParams.categoryId) {
+    categoryId = searchParams.categoryId
   }
-  useEffect(() => {
-    const offset = page * limit
-    const fetchCountyDestinations = async () => {
-      setIsLoading(true)
-      try {
-        const res = await getCountyDestinations(countyId, offset)
-        if(res) {
-          setData(res)
-        }
-      } catch (error) {
-        setError('Error fetching counties is '+error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    const fetchCategoryDestinations = async () => {
-      setIsLoading(true)
-      try {
-        const res = await getCategoryDestinations(categoryId, offset)
-        if(res) {
-          setData(res)
-        }
-      } catch (error) {
-        setError('Error fetching counties is '+error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    if (countyId && countyId !== '') {
-      fetchCountyDestinations()
-    } else if (categoryId && categoryId !== '') {
-      fetchCategoryDestinations()
-    }
-  }, [page])
   
-  
+
   return (
     <div className='min-h-screen'>
-      <ContentHeader 
-        crumbPage={crumbPage}
-        crumbLinks={crumbLinks}
-        icon={<Palmtree />}
-        title={crumbPage}
+      <DestinationsComponent 
+        name={name}
+        countyId={countyId}
+        categoryId={categoryId}
       />
-      <div className='card'>
-        {isLoading || totalLoading ? (
-          <CustomLoading />
-        ) : error ? (
-          <CustomError />
-        ) : (
-          data?.map((destination) => {
-            const viewDestination = () => {
-                let pathName = '#'
-                if(countyId!== undefined && countyId!== '') {
-                  pathName = `/destinations/${destination.$id}?name='county'`
-                } else if(categoryId!== undefined && categoryId!== '') {
-                  pathName = `/destinations/${destination.$id}?name='category'`
-                }
-                return router.push(pathName)
-            }
-            let image = ''
-            if(destination.images.length > 0) {
-              image = destination.images[0]
-            } else {
-              image = defaultUrl
-            }
-            return (
-            <div key={destination.$id} className='card-item' onClick={viewDestination}>
-                <DestinationCard 
-                    title={destination.name}
-                    description={destination.intro}
-                    image={image}
-                    location={destination.countyId.name}
-                />
-            </div>
-            )
-          })
-        )}
-      </div>
-      <hr className="hr"/>
-        <AdsHorizontal />
-      <hr className="hr"/>
     </div>
   )
 }
