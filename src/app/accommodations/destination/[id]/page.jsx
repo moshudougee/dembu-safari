@@ -12,7 +12,7 @@ export const generateMetadata = async ({params}) => {
       title: `${destination.name} Accommodations`,
       description: `Accommodations services for tourists visiting ${destination.name} in Kenya`,
       openGraph: {
-        title: `${destination.name} Tours & Safari`,
+        title: `${destination.name} Accommodations`,
         description: `Accommodations services for tourists visiting ${destination.name} in Kenya`,
         type: "article",
         locale: "en_US",
