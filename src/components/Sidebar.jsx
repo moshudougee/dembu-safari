@@ -148,7 +148,7 @@ const Sidebar = () => {
                             return(
                                 <div key={category.id}>
                                 <MenubarItem>
-                                    <Link href='/' className='menubar-item'>
+                                    <Link href={category.href} className='menubar-item'>
                                         {category.icon}
                                         <span className="menubar-text">{category.title}</span>
                                     </Link>

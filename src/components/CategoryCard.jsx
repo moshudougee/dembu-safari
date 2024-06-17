@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { FilePenLine, Hotel, Luggage, Palmtree, Trash2 } from 'lucide-react'
+import { FilePenLine, Palmtree, Trash2 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
@@ -14,6 +14,8 @@ import CustomLoading from './CustomLoading'
 import { defaultAvatar } from '@/lib/utils'
 import Link from 'next/link'
 import AdsHorizontal from './AdsHorizontal'
+import { FaHotel } from 'react-icons/fa6'
+import { BsLuggageFill } from 'react-icons/bs'
 
 const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
     const [isLoading, setIsLoading] = useState(false)
@@ -84,16 +86,22 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
                         {destinations || 0}
                     </span>
                 </Link>
-                <div className='category-card-side'>
-                    <Hotel />
-                    <span className='font-normal'>Accommodation</span>
-                    <span className='text-xl'>0</span>
-                </div>
-                <div className='category-card-side'>
-                    <Luggage />
+                <Link 
+                    className='category-card-side'
+                    href={`/accommodations/category/${data?.$id}`}
+                >
+                    <FaHotel size={24} />
+                    <span className='font-normal'>Accommodations</span>
+                    <span className='text-xl'></span>
+                </Link>
+                <Link 
+                    className='category-card-side'
+                    href={`/tours/category/${data?.$id}`}
+                >
+                    <BsLuggageFill size={24} />
                     <span className='font-normal'>Tours & Safari</span>
-                    <span className='text-xl'>0</span>
-                </div>
+                    <span className='text-xl'></span>
+                </Link>
                 {role === 'ADMIN' && 
                     <div className='flex gap-4 justify-center items-center mt-10'>
                         <div className='relative group'>

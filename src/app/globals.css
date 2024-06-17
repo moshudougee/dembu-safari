@@ -336,10 +336,10 @@
     @apply xl:w-[800px] xl:h-[449px] 2xl:w-[700px] 2xl:h-[393px] 3xl:w-[1100px] 3xl:h-[618px];
   }
   .category-card-side {
-    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2 xl:mt-4 xl:py-4 w-[350px]
+    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 hover:text-success-1 mt-2 py-2 xl:mt-4 xl:py-4 w-[350px]
   }
   .county-card-side {
-    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 mt-2 py-2 w-[350px]
+    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 hover:text-success-1 mt-2 py-2 w-[350px]
   }
   .tabs {
     @apply flex flex-col justify-center items-center w-full min-h-[600px] m-2 left-1 p-10

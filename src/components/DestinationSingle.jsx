@@ -1,7 +1,7 @@
 'use Client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
-import { FilePenLine, Hotel, Layers, Locate, Luggage, MapPin, Trash2 } from 'lucide-react'
+import { FilePenLine, Layers, Locate, MapPin, Trash2 } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from './ui/button'
 import { useRouter } from 'next/navigation'
@@ -15,6 +15,8 @@ import { defaultAvatar } from '@/lib/utils'
 import Link from 'next/link'
 import AdsHorizontal from './AdsHorizontal'
 import AdSquare from './AdSquare'
+import { FaHotel } from 'react-icons/fa6'
+import { BsLuggageFill } from 'react-icons/bs'
 
 
 const DestinationSingle = ({ data, role="CLIENT", swal }) => {
@@ -105,16 +107,22 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                         <Layers />
                         <span className='font-normal'>{data?.categoryId.name}</span>
                     </Link>
-                    <div className='county-card-side'>
-                        <Hotel />
+                    <Link 
+                        className='county-card-side'
+                        href={`/accommodations/destination/${data.$id}`}
+                    >
+                        <FaHotel size={24} />
                         <span className='font-normal'>Accommodation</span>
-                        <span className='text-xl'>0</span>
-                    </div>
-                    <div className='county-card-side'>
-                        <Luggage />
+                        <span className='text-xl'></span>
+                    </Link>
+                    <Link 
+                        className='county-card-side'
+                        href={`/tours/destination/${data.$id}`}
+                    >
+                        <BsLuggageFill size={24} />
                         <span className='font-normal'>Tours & Safari</span>
-                        <span className='text-xl'>0</span>
-                    </div>
+                        <span className='text-xl'></span>
+                    </Link>
                     {role === 'ADMIN' && 
                         <div className='flex gap-4 justify-center items-center mt-8'>
                             <div className='relative group'>
