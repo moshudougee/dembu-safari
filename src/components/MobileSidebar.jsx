@@ -31,7 +31,7 @@ const MobileSidebar = () => {
                     <Menubar className="sidebar-menubar">
                     <MenubarMenu>
                       <MenubarTrigger className=" focus:bg-transparent data-[state=open]:bg-transparent">
-                        <div className='mobilesidebar-menu'>
+                        <div className='mobilesidebar-menu group1'>
                             <BsStack size={20} />
                             <span className='mobilesidebar-text'>Categories</span>
                         </div>
@@ -75,7 +75,7 @@ const MobileSidebar = () => {
                     <Menubar className="sidebar-menubar">
                     <MenubarMenu>
                       <MenubarTrigger className=" focus:bg-transparent data-[state=open]:bg-transparent">
-                        <div className='sidebar-menu group'>
+                        <div className='mobilesidebar-menu group1'>
                             <FcLandscape size={20} />
                             <span className='mobilesidebar-text'>Counties</span>
                         </div>
@@ -126,7 +126,7 @@ const MobileSidebar = () => {
                     <Menubar className="sidebar-menubar">
                     <MenubarMenu>
                       <MenubarTrigger className=" focus:bg-transparent data-[state=open]:bg-transparent">
-                        <div className='sidebar-menu group'>
+                        <div className='mobilesidebar-menu group1'>
                             <FcPackage size={20} />
                             <span className='mobilesidebar-text'>Packages</span>
                         </div>

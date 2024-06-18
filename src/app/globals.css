@@ -311,7 +311,10 @@
   .form-link {
     @apply text-14 cursor-pointer font-medium text-success-1;
   }
-  .group:hover .hover-text .mobilesidebar-text {
+  .group:hover .hover-text {
+    @apply opacity-100 visible;
+  }
+  .group1:hover .mobilesidebar-text {
     @apply opacity-100 visible;
   }
   .hover-text {
@@ -319,11 +322,11 @@
     @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md right-4;
   }
   .mobilesidebar-menu {
-    @apply flex gap-1 py-1 justify-center items-center text-success-1 hover:text-safari-2 rounded cursor-pointer
+    @apply flex gap-3 py-1 justify-center items-center text-success-1 hover:text-safari-2 rounded cursor-pointer
   }
   .mobilesidebar-text {
-    @apply absolute flex items-center justify-center text-lg font-semibold opacity-0 invisible;
-    @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md left-2;
+    @apply absolute flex items-center justify-center text-lg font-semibold opacity-0 invisible bg-white/60;
+    @apply transition-opacity duration-300 ease-in-out h-10 w-24 px-1 rounded-md left-10;
   }
   .category-card {
     @apply flex flex-col w-full justify-center
