@@ -6,9 +6,10 @@ import CustomLoading from '@/components/CustomLoading'
 import DestinationCard from '@/components/DestinationCard'
 import { countCategoryDestinations, countCountyDestinations, getCategoryDestinations, getCountyDestinations } from '@/lib/server/destinationActions'
 import { defaultSquareAvatar } from '@/lib/utils'
-import { Palmtree } from 'lucide-react'
+import { ArrowBigLeftDash, ArrowBigRightDash, Palmtree } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
+import { Button } from './ui/button'
 
 const DestinationsComponent = ({ name, countyId, categoryId }) => {
     const [data, setData] = useState(null)
