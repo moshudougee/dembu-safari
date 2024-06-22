@@ -14,7 +14,6 @@ import CustomLoading from './CustomLoading'
 import { defaultAvatar } from '@/lib/utils'
 import Link from 'next/link'
 import AdsHorizontal from './AdsHorizontal'
-import AdSquare from './AdSquare'
 import { FaHotel } from 'react-icons/fa6'
 import { BsLuggageFill } from 'react-icons/bs'
 
@@ -97,7 +96,7 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                     )}
                     
                 </div>
-                <div className='flex flex-col justify-center items-center w-[350px] 2xl:w-1/3 mt-8'>
+                <div className='flex flex-col justify-start items-center rounded-md shadow-md w-[350px] 2xl:w-1/3 mt-8 py-4'>
                     <Link href={`/counties/${data?.countyId.$id}`} className='county-card-side'>
                         <Locate />
                         <span className='font-normal'>{data?.countyId.name}</span>
@@ -163,7 +162,7 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
         </div>
         <hr className="hr"/>
         <div className='tabs'>
-        <Tabs defaultValue="details" className="flex flex-col w-full rounded-md shadow-md p-20 md:p-10 xl:mx-10 ml-28 md:ml-5">
+        <Tabs defaultValue="details" className="flex flex-col w-full min-h-screen shadow-none p-20 md:p-10 xl:mx-10 ml-28 md:ml-5">
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 
@@ -279,7 +278,7 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
                     </div>
                     
                 </TabsContent>
-            </Tabs>
+        </Tabs>
         </div>
     </div>
   )

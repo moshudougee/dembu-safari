@@ -82,7 +82,7 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
             <div className='category-card-image'>
                 <Image src={data?.image} alt='Category' fill sizes='100' className='rounded-md' priority />
             </div>
-            <div className='flex flex-col w-full 2xl:w-1/3 items-center mt-8'>
+            <div className='flex flex-col w-full rounded-md shadow-md 2xl:w-1/3 items-center mt-8 py-4'>
                 <Link 
                     href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data?.name}&countyId=${data?.$id}`} 
                     className='county-card-side'
@@ -144,7 +144,7 @@ const CountyCard = ({ data, destinations=0, role="CLIENT", swal }) => {
         </div>
         <hr className="hr"/>
         <div className='tabs'>
-            <Tabs defaultValue="details" className="flex flex-col w-[400px] md:w-full rounded-md shadow-md p-5 xl:mx-10">
+            <Tabs defaultValue="details" className="flex flex-col w-[400px] md:w-full p-5 xl:mx-10">
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 

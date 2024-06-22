@@ -110,7 +110,7 @@ const Sidebar = () => {
                             }
                             return(
                                 <div key={county.$id}>
-                                <MenubarItem className='shadow'>
+                                <MenubarItem>
                                     <Link href={`/counties/${county.$id}`} className='menubar-item'>
                                         <div className='relative rounded w-5 h-auto'>
                                           <img src={county.flag} alt='flag' className='w-5 h-auto' />

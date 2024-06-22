@@ -332,20 +332,20 @@
     @apply flex flex-col w-full justify-center
   }
   .category-card-main {
-    @apply flex flex-col justify-center items-center 2xl:flex-row gap-1 shadow-md rounded-md w-full m-2 px-2 py-3
+    @apply flex flex-col justify-center items-center 2xl:flex-row gap-1 shadow-md rounded-md w-full m-2 px-2 py-5
   }
   .category-card-image {
     @apply flex relative rounded-md border w-[320px] h-[180px] md:w-[690px] md:h-[388px] lg:w-[595px] lg:h-[334px];
     @apply xl:w-[800px] xl:h-[449px] 2xl:w-[700px] 2xl:h-[393px] 3xl:w-[1100px] 3xl:h-[618px];
   }
   .category-card-side {
-    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 hover:text-success-1 mt-2 py-2 xl:mt-4 xl:py-4 w-[350px]
+    @apply flex gap-4 justify-start items-center text-safari-2 hover:text-success-1 mt-2 p-2 xl:mt-4 xl:p-4 w-[350px]
   }
   .county-card-side {
-    @apply flex gap-4 justify-center items-center shadow-md text-safari-2 hover:text-success-1 mt-2 py-2 w-[350px]
+    @apply flex gap-4 justify-start items-center text-safari-2 hover:text-success-1 mt-2 p-2 w-[350px]
   }
   .tabs {
-    @apply flex flex-col justify-center items-center w-full min-h-[600px] m-2 left-1 p-10
+    @apply flex flex-col justify-start items-center rounded-md shadow-md w-full min-h-screen m-2 left-1 p-10
   }
   .card {
     @apply flex flex-col md:grid md:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 h-auto w-full ps-2 my-4
@@ -358,7 +358,7 @@
     @apply 2xl:w-[370px] 2xl:h-[338px];
   }
   .destination-card-main {
-    @apply flex flex-col gap-2 justify-center items-center shadow-md rounded-md w-full m-2 p-2
+    @apply flex flex-col gap-2 justify-center items-center shadow-md rounded-md w-full m-2 px-2 py-5
   }
   .destination-card-image {
     @apply flex relative rounded-md border w-[350px] h-[350px] md:w-[600px] md:h-[600px] lg:w-[595px] lg:h-[595px];
@@ -436,7 +436,7 @@
     @apply flex gap-2 bg-transparent text-red-700
   }
   .ad-horizontal {
-    @apply flex w-full h-44 my-2
+    @apply flex w-full h-44 my-3
   }
   .ad-square {
     @apply flex w-52 h-auto my-1

@@ -75,7 +75,7 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
             <div className='category-card-image'>
                 <Image src={data?.image} alt='Category' fill sizes='100' className='rounded-md' priority />
             </div>
-            <div className='flex flex-col w-full 2xl:w-1/3 items-center mt-5 xl:mt-10'>
+            <div className='flex flex-col w-full rounded-md shadow-md 2xl:w-1/3 items-center mt-5 xl:mt-10 py-4'>
                 <Link
                     href={!destinations || destinations === 0 ? '#' : `/destinations?name=${data?.name}&categoryId=${data?.$id}`} 
                     className='category-card-side'
@@ -124,7 +124,7 @@ const CategoryCard = ({ data, destinations=0, role="CLIENT", swal }) => {
         <div className='tabs'>
             <Tabs 
             defaultValue="details" 
-            className='flex flex-col w-full  rounded-md shadow-md p-4 xl:mx-10'>
+            className='flex flex-col w-full p-4 xl:mx-10'>
                 <TabsList className="text-success-1">
                     <TabsTrigger 
                     value="details" 
