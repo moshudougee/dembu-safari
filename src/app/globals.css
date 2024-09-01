@@ -332,7 +332,7 @@
     @apply flex flex-col w-full justify-center
   }
   .category-card-main {
-    @apply flex flex-col justify-center items-center 2xl:flex-row gap-1 shadow-md rounded-md w-full m-2 px-2 py-5
+    @apply flex flex-col justify-center items-start 2xl:flex-row gap-1 shadow-md rounded-md w-full m-2 px-2 py-5
   }
   .category-card-image {
     @apply flex relative rounded-md border w-[320px] h-[180px] md:w-[690px] md:h-[388px] lg:w-[595px] lg:h-[334px];

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import { LayoutList, Palmtree, SwatchBook, Telescope } from 'lucide-react'
 import { BsStack } from "react-icons/bs"

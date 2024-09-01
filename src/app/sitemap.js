@@ -25,7 +25,7 @@ const SiteMap = async () => {
             }
         })
     })
-    const routes = ["", "/popular", "/about", "/contact", "/accommodation", "/tours"].map((route) => {
+    const routes = ["", "/popular", "/about", "/contact", "/accommodations", "/tours"].map((route) => {
         return {
             url: `${SITE_URL}${route}`,
             lastModified: new Date().toISOString(),

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use Client'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
@@ -87,7 +88,7 @@ const DestinationSingle = ({ data, role="CLIENT", swal }) => {
   return (
     <div className='category-card'>
         <div className='destination-card-main'>
-            <div className='flex flex-col 2xl:flex-row 2xl:gap-3 justify-center items-center'>
+            <div className='flex flex-col 2xl:flex-row 2xl:gap-3 justify-center items-start'>
                 <div className='destination-card-image'>
                     {data.images.length > 0 ? (
                         <Image src={activeImage} alt='Destination' fill sizes='100' className='rounded-md object-cover' priority />
